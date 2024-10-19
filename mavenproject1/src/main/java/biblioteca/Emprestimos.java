@@ -6,4 +6,13 @@ public class Emprestimos {
     private String dataEmpr;
     private String datadevol;
     private int idEmpr;
+
+    public void setDataEmpr(String dataEmpr) {
+        this.dataEmpr = dataEmpr;
+    }
+
+    public void setDatadevol(String datadevol) {
+        this.datadevol = datadevol;
+    }
+    
 }

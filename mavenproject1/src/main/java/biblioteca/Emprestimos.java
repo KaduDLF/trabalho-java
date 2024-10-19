@@ -5,5 +5,5 @@ public class Emprestimos {
     private BibliLivro livro;
     private String dataEmpr;
     private String datadevol;
-    private int idEmpr;gjvghjghjhj
+    private int idEmpr;
 }

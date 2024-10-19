@@ -7,6 +7,7 @@ public class BibliUsuario {
     private String contato;
     private int idade;
     private int id;
+    private Emprestimos emprestimos; // vai puxar o emprestimo dentro de main para saber quem esta com o livro!
     
     
     public BibliUsuario(String nome, String sexo, String contato, int idade, int id){
@@ -19,15 +20,20 @@ public class BibliUsuario {
     
     String getNome(){
         return this.nome;
+        
+    }
+    
+    int getId(){
+        return this.id;
     }
 
     @Override
     public String toString() {
-        return this.id;
+        return this.id; 
     }   
         
      
     
-    
+   
     
 }

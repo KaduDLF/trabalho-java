@@ -9,7 +9,13 @@ public class BibliLivro {
     private int anoPublicacao;
     private int exemplarDisponivel;
     
-    public BibliLivro()
+    public BibliLivro(String titulo, String autor, int anoPublicacao, int exemplarDisponivel) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.anoPublicacao = anoPublicacao;
+        this.exemplarDisponivel = exemplarDisponivel;
+    }
+    
     
     
 }

@@ -13,12 +13,10 @@ public class BibliMain {
         System.out.println(" 6 - devolver algum livro");
         System.out.println(" 7 - sair");
         
-    }
+    } // função pra mostrar o menu
            
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        while(){
-            
-        }
+        
     }
 }

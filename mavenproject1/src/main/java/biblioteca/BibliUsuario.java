@@ -7,6 +7,7 @@ public class BibliUsuario {
     private String contato;
     private int idade;
     private int id;
+    private Emprestimos emprestimos;
     
     
     public BibliUsuario(String nome, String sexo, String contato, int idade, int id){
@@ -23,7 +24,7 @@ public class BibliUsuario {
 
     @Override
     public String toString() {
-        return this.id;
+        return this.id; 
     }   
         
      

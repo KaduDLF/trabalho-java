@@ -20,6 +20,11 @@ public class BibliUsuario {
     
     String getNome(){
         return this.nome;
+        
+    }
+    
+    int getId(){
+        return this.id;
     }
 
     @Override

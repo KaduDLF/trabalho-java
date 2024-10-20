@@ -25,8 +25,9 @@ public class BibliMain {
         String nomeUsu, sexoUsu, contatoUsu; // variaveis para cadastro de usuario
         int idadeUsu, idUsu;// variaveis para cadastro de usuario
         int qtdLiv = 0; 
+        int qtdUsuarios = 0;
         System.out.println("Bem vindo ao sistema de biblioteca!");
-        BibliUsuario[] usuarios = null;
+        BibliUsuario[] usuarios = new BibliUsuario[100];
         BibliLivro[] livros = null;
         
         menu(); // mostrando o menu na tela
@@ -40,23 +41,37 @@ public class BibliMain {
                 case 1:
                     System.out.println("Deseja cadastrar quantos usuarios?");
                     qtd = scan.nextInt();
-                    usuarios = new BibliUsuario[qtd];
+                    //usuarios = new BibliUsuario[qtd];
+                    for(int i = 0;i < usuarios.length; i++){
+                        if(usuarios[i] != null){
+                            qtdUsuarios++;
+                        }
+                    }
                     
-                 
-                    for(int i = 0; i<usuarios.length;i++){
-                        scan.nextLine();
-                        System.out.println("Digite o nome do usuario");
-                        nomeUsu = scan.nextLine();
-                        System.out.println("Digite o sexo do usuario");
-                        sexoUsu = scan.nextLine();
-                        System.out.println("Digite o contato do usuario, ex'(62)4002-8922'");
-                        contatoUsu = scan.nextLine();
-                        System.out.println("Digite a idade do usuario");
-                        idadeUsu = scan.nextInt();
-                        scan.nextLine();
-                        idUsu = (i + 1);
-                        usuarios[i] = new BibliUsuario(nomeUsu, sexoUsu, contatoUsu, idadeUsu, idUsu);    
-                        System.out.println(usuarios[i].getNome() + " cadastrado com sucesso!!" + "\n" + "dê enter para prosseguir!");
+                    int soma = usuarios.length - qtdUsuarios;
+                    if(qtd < soma){
+                        for(int i = qtdUsuarios; i< (qtdUsuarios+qtd) ;i++){
+                            scan.nextLine();
+                            System.out.println("Digite o nome do usuario");
+                            nomeUsu = scan.nextLine();
+                            System.out.println("Digite o sexo do usuario");
+                            sexoUsu = scan.nextLine();
+                            System.out.println("Digite o contato do usuario, ex'(62)4002-8922'");
+                            contatoUsu = scan.nextLine();
+                            System.out.println("Digite a idade do usuario");
+                            idadeUsu = scan.nextInt();
+                            scan.nextLine();
+                            idUsu = (i + 1);
+                            usuarios[i] = new BibliUsuario(nomeUsu, sexoUsu, contatoUsu, idadeUsu, idUsu);    
+                            System.out.println(usuarios[i].getNome() + " cadastrado com sucesso!!" + "\n" + "dê enter para prosseguir!");
+                        }
+                        for(int i = 0;i < usuarios.length; i++){
+                            if(usuarios[i] != null){
+                                qtdUsuarios++;
+                            }
+                        }
+                        soma = usuarios.length - qtdUsuarios;
+                        System.out.println("Restam " + soma + " espaços para cadastro de usuarios");
                     }
                     break;
                 case 2:
@@ -85,11 +100,20 @@ public class BibliMain {
                     break;
 
                 case 3:
-                    System.out.println("Listagem de Usuarios");
+                    qtdUsuarios = 0;
+                    System.out.println("=======================================");
+                    System.out.println("         LISTAGEM DE USUARIOS          ");
+                    System.out.println("=======================================");
                     scan.nextLine();
                     for(BibliUsuario usu : usuarios){
-                        System.out.println(usu);
+                        if(usu != null){
+                            System.out.println(usu);
+                            qtdUsuarios++;
+                        }
+                        
                     }
+                    soma = 100 - qtdUsuarios;
+                    System.out.println("Restam " + soma + " espaços para cadastro de usuarios");
                     scan.nextLine(); // aguardar o enter para prosseguir
                     break;
                 case 4:

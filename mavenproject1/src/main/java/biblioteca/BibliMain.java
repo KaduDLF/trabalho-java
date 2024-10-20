@@ -20,7 +20,7 @@ public class BibliMain {
            
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-
+        int soma = 0;
         int qtd = 0;  
         String nomeUsu, sexoUsu, contatoUsu; // variaveis para cadastro de usuario
         int idadeUsu, idUsu;// variaveis para cadastro de usuario
@@ -39,17 +39,27 @@ public class BibliMain {
         while(opc != 8){
             switch(opc){
                 case 1:
+                    
+                    qtdUsuarios = 0;
+                    for(int i = 0;i < usuarios.length; i++){
+                            if(usuarios[i] != null){
+                                qtdUsuarios++; 
+                            }
+                        }
+                    soma = usuarios.length - qtdUsuarios; // verificação de quantos usuarios ja foram preenchidos
+                    System.out.println("Existem " + soma + " espaços para cadastro de usuarios");
+                    scan.nextLine(); // dê enter para prosseguir
+                    
                     System.out.println("Deseja cadastrar quantos usuarios?");
                     qtd = scan.nextInt();
-                    //usuarios = new BibliUsuario[qtd];
-                    for(int i = 0;i < usuarios.length; i++){
-                        if(usuarios[i] != null){
-                            qtdUsuarios++;
-                        }
-                    }
+                    //for(int i = 0;i < usuarios.length; i++){
+                       // if(usuarios[i] != null){
+                        //    qtdUsuarios++;
+                      //  }
+                    //}
                     
-                    int soma = usuarios.length - qtdUsuarios;
-                    if(qtd < soma){
+                    // soma = usuarios.length - qtdUsuarios;
+                    if(qtd <= soma){
                         for(int i = qtdUsuarios; i < (qtdUsuarios+qtd) ;i++){
                             scan.nextLine();
                             System.out.println("Digite o nome do usuario");
@@ -65,14 +75,11 @@ public class BibliMain {
                             usuarios[i] = new BibliUsuario(nomeUsu, sexoUsu, contatoUsu, idadeUsu, idUsu);    
                             System.out.println(usuarios[i].getNome() + " cadastrado com sucesso!!" + "\n" + "dê enter para prosseguir!");
                         }
-                        for(int i = 0;i < usuarios.length; i++){
-                            if(usuarios[i] != null){
-                                qtdUsuarios++;
-                            }
-                        }
-                        soma = usuarios.length - qtdUsuarios;
-                        System.out.println("Restam " + soma + " espaços para cadastro de usuarios");
+                        
+                    }else{
+                        System.out.println("Quantidade excede o espaço disponivel!");
                     }
+                    
                     break;
                 case 2:
                     System.out.println("Deseja cadastrar quantos livro? ");

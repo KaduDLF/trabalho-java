@@ -131,15 +131,22 @@ public class BibliMain {
                     System.out.println("Restam " + soma + " espaços para cadastro de usuarios");
                     scan.nextLine(); // aguardar o enter para prosseguir
                     break;
+                    
                 case 4:
                     System.out.println("================================================");
                     System.out.println("              LISTAGEM DE LIVRROS               ");
                     System.out.println("================================================");
-                    //for (int  i = 0; i <cadLiv; i++){
+                    for (int  i = 0; i < qntdLiv; i++){
+                        if (livros[i] != null){
+                            System.out.println("Titulo: " + livros[i].getTitulo());
+                            //teste .cpp
+                                    
                             
-                      //  }
+                        }
+                            
+
                         
-                    //}
+                    }
                     
                     break;
                 case 5:

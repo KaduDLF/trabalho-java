@@ -20,9 +20,14 @@ public class BibliMain {
            
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+
         int soma = 0;
         int qtd = 0; 
          int cadLiv;
+
+        int soma = 0; // variavel para fazer o calculo se tem espaço no array
+        int qtd = 0;  
+
         String nomeUsu, sexoUsu, contatoUsu; // variaveis para cadastro de usuario
         int idadeUsu, idUsu;// variaveis para cadastro de usuario
         int restLiv = 0;

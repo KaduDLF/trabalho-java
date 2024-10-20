@@ -21,14 +21,16 @@ public class BibliMain {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         int soma = 0;
-        int qtd = 0;  
+        int qtd = 0; 
+         int cadLiv;
         String nomeUsu, sexoUsu, contatoUsu; // variaveis para cadastro de usuario
         int idadeUsu, idUsu;// variaveis para cadastro de usuario
-        int qtdLiv = 0; 
+        int restLiv = 0;
+        int q_livros = 0;
         int qtdUsuarios = 0;
         System.out.println("Bem vindo ao sistema de biblioteca!");
         BibliUsuario[] usuarios = new BibliUsuario[100];
-        BibliLivro[] livros = null;
+
         
         menu(); // mostrando o menu na tela
         
@@ -75,27 +77,37 @@ public class BibliMain {
                     
                     break;
                 case 2:
-                    System.out.println("Deseja cadastrar quantos livro? ");
-                     qtdLiv = scan.nextInt();
+                    System.out.println("=================================================");
+                     System.out.println("               CADASTRO DE LIVROS                ");
+                     System.out.println("=================================================");
+                     
+                     System.out.println("Sua biblioteca tem espaço para quantos livros? ");
+                     int qntdLiv = scan.nextInt();
+                     scan.nextLine();
+                     BibliLivro[] livros = new BibliLivro[qntdLiv];
+                     
+                     System.out.println("Deseja cadastrar quantos livros? ");
+                     cadLiv = scan.nextInt();
                      scan.nextLine();
                      
-                      livros = new BibliLivro[qtdLiv];
+                     for(int i = 0; i < cadLiv; i++){
+                         System.out.print("Titulo: ");
+                         String titulo = scan.nextLine();
+                         System.out.print("Autor: ");
+                         String autor = scan.nextLine();
+                         System.out.print("Ano de Publicacao: ");
+                         int anoPub = scan.nextInt();
+                         System.out.print("Quantidade de Exemplares: ");
+                         int exemplares = scan.nextInt();
+                         
+                         livros[i] = new BibliLivro(titulo, autor, anoPub, exemplares);
+                         q_livros++;
+                         System.out.println("Livro: " + livros[i].getTitulo()+ " cadastrado com sucesso!");
+                         scan.nextLine();
+                        restLiv = qntdLiv - q_livros;
+                     }
                      
-                    for (int i = 0; i < qtdLiv; i++){
-                        System.out.println("Informe o Titulo do livro: ");
-                        String titulo = scan.nextLine();
-                        System.out.println("Informe o autor do livro: ");
-                        String autor = scan.nextLine();
-                        System.out.println("Informe o ano de publicacao: ");
-                        int ano_pub = scan.nextInt();
-                        System.out.println("Informe a quantidade de exemplares desse livro: ");
-                        int exemplar = scan.nextInt();
-                        
-                        livros[i] = new BibliLivro(titulo, autor, ano_pub, exemplar); // vai armazenar dentro do construtor os indices em sequencia
-                        System.out.println("livro: " + livros[i].getTitulo() + ", cadastrado com sucesso! \n"
-                                + "De enter para continuar! "); 
-                        scan.nextLine();
-                    }
+                     System.out.println("Restam para cadastrar " + restLiv + " livros!");
                             
                     break;
 
@@ -117,16 +129,12 @@ public class BibliMain {
                     scan.nextLine(); // aguardar o enter para prosseguir
                     break;
                 case 4:
-                    System.out.println("=======================================");
-                    System.out.println("           LISTAGEM DE LIVROS          ");
-                    System.out.println("=======================================");
-                    scan.nextLine();
-      
-                    for(int i = 0; i < qtdLiv; i++){
-                        System.out.println("Titulo: " + livros[i].getTitulo());
-                        System.out.println("Autor: " + livros[i].getAutor());
-                        System.out.println("Ano de publicacao: " + livros[i].getAnoPublicacao());
-                        System.out.println("Quantidade de exemplares feitos: " +livros[i].getExemplarDisponivel());
+                    System.out.println("================================================");
+                    System.out.println("              LISTAGEM DE LIVRROS               ");
+                    System.out.println("================================================");
+                    for (int  i = 0; i <cadLiv; i++){
+                            
+                        }
                         
                     }
                     

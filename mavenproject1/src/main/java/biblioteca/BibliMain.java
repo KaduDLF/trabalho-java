@@ -52,13 +52,6 @@ public class BibliMain {
                     
                     System.out.println("Deseja cadastrar quantos usuarios?");
                     qtd = scan.nextInt();
-                    //for(int i = 0;i < usuarios.length; i++){
-                       // if(usuarios[i] != null){
-                        //    qtdUsuarios++;
-                      //  }
-                    //}
-                    
-                    // soma = usuarios.length - qtdUsuarios;
                     if(qtd <= soma){
                         for(int i = qtdUsuarios; i < (qtdUsuarios+qtd) ;i++){
                             scan.nextLine();

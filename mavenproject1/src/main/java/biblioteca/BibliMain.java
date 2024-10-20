@@ -19,7 +19,7 @@ public class BibliMain {
            
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        int qtd; 
+        int qtd = 0; 
         String nomeUsu, sexoUsu, contatoUsu; // variaveis para cadastro de usuario
         int idadeUsu, idUsu; // variaveis para cadastro de usuario
         System.out.println("Bem vindo ao sistema de biblioteca!");
@@ -58,7 +58,11 @@ public class BibliMain {
                     
                     break;
                 case 3:
-                    System.out.println("Listagem de livros");
+                    System.out.println("Listagem de Usuarios");
+                    scan.nextLine();
+                    for(BibliUsuario usu : usuarios){
+                        
+                    }
                     break;
                 case 4:
                     break;

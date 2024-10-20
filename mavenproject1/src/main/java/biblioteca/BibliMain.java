@@ -8,11 +8,12 @@ public class BibliMain {
         System.out.println("----------------Menu-----------------");
         System.out.println(" 1 - Cadastro de Usuario");
         System.out.println(" 2 - Cadastro de Livro");
-        System.out.println(" 3 - listar todos os livros");
-        System.out.println(" 4 - listar todos os livros disponiveis");
-        System.out.println(" 5 - Associar emprestimo");
-        System.out.println(" 6 - devolver algum livro");
-        System.out.println(" 7 - sair");
+        System.out.println(" 3 - listar todos os usuarios");
+        System.out.println(" 4 - listar todos os livros");
+        System.out.println(" 5 - listar todos os livros disponiveis");
+        System.out.println(" 6 - Associar emprestimo");
+        System.out.println(" 7 - devolver algum livro");
+        System.out.println(" 8 - sair");
         System.out.println("-------------------------------------");
         
     } // função pra mostrar o menu
@@ -30,7 +31,7 @@ public class BibliMain {
         System.out.println("escolha uma opcao");
         int opc = scan.nextInt();
                 
-        while(opc != 7){
+        while(opc != 8){
             switch(opc){
                 case 1:
                     System.out.println("Deseja cadastrar quantos usuarios?");
@@ -80,12 +81,15 @@ public class BibliMain {
                     break;
 
                 case 3:
+                    System.out.println("Listagem de livros");
                     break;
                 case 4:
                     break;
                 case 5:
                     break;
                 case 6:
+                    break;
+                case 7:
                     break;
                 default:
                     System.out.println("Opção errada!!!");

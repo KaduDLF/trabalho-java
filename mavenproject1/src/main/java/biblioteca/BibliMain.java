@@ -23,9 +23,11 @@ public class BibliMain {
 
         int qtd = 0;  
         String nomeUsu, sexoUsu, contatoUsu; // variaveis para cadastro de usuario
-        int idadeUsu, idUsu; // variaveis para cadastro de usuario
+        int idadeUsu, idUsu;// variaveis para cadastro de usuario
+        int qtdLiv = 0; 
         System.out.println("Bem vindo ao sistema de biblioteca!");
         BibliUsuario[] usuarios = null;
+        BibliLivro[] livros = null;
         
         menu(); // mostrando o menu na tela
         
@@ -59,12 +61,12 @@ public class BibliMain {
                     break;
                 case 2:
                     System.out.println("Deseja cadastrar quantos livro? ");
-                     qtd = scan.nextInt();
+                     qtdLiv = scan.nextInt();
                      scan.nextLine();
                      
-                     BibliLivro[] livros = new BibliLivro[qtd];
+                      livros = new BibliLivro[qtdLiv];
                      
-                    for (int i = 0; i < qtd; i++){
+                    for (int i = 0; i < qtdLiv; i++){
                         System.out.println("Informe o Titulo do livro: ");
                         String titulo = scan.nextLine();
                         System.out.println("Informe o autor do livro: ");
@@ -74,7 +76,7 @@ public class BibliMain {
                         System.out.println("Informe a quantidade de exemplares desse livro: ");
                         int exemplar = scan.nextInt();
                         
-                        livros[i] = new BibliLivro(titulo, autor, ano_pub, exemplar);
+                        livros[i] = new BibliLivro(titulo, autor, ano_pub, exemplar); // vai armazenar dentro do construtor os indices em sequencia
                         System.out.println("livro: " + livros[i].getTitulo() + ", cadastrado com sucesso! \n"
                                 + "De enter para continuar! "); 
                         scan.nextLine();
@@ -91,6 +93,19 @@ public class BibliMain {
                     scan.nextLine(); // aguardar o enter para prosseguir
                     break;
                 case 4:
+                    System.out.println("=======================================");
+                    System.out.println("           LISTAGEM DE LIVROS          ");
+                    System.out.println("=======================================");
+                    scan.nextLine();
+      
+                    for(int i = 0; i < qtdLiv; i++){
+                        System.out.println("Titulo: " + livros[i].getTitulo());
+                        System.out.println("Autor: " + livros[i].getAutor());
+                        System.out.println("Ano de publicacao: " + livros[i].getAnoPublicacao());
+                        System.out.println("Quantidade de exemplares feitos: " +livros[i].getExemplarDisponivel());
+                        
+                    }
+                    
                     break;
                 case 5:
                     break;

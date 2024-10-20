@@ -19,5 +19,30 @@ public class BibliMain {
         Scanner scan = new Scanner(System.in);
         System.out.println("Bem vindo ao sistema de biblioteca!");
         
+        menu(); // mostrando o menu na tela
+        
+        System.out.println("escolha uma opção");
+        int opc = scan.nextInt();
+        
+        while(opc != 7){
+            switch(opc){
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                default:
+                    
+                    break;
+            }
+        }
+        
     }
 }

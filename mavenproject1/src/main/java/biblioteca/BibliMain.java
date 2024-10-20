@@ -1,5 +1,6 @@
 package biblioteca;
 
+import java.awt.BorderLayout;
 import java.util.Scanner;
 
 public class BibliMain {
@@ -18,7 +19,7 @@ public class BibliMain {
            
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        int qtd; 
+        int qtd, i; 
         String nomeUsu, sexoUsu, contatoUsu; // variaveis para cadastro de usuario
         int idadeUsu, idUsu; // variaveis para cadastro de usuario
         System.out.println("Bem vindo ao sistema de biblioteca!");
@@ -37,7 +38,7 @@ public class BibliMain {
                     BibliUsuario[] usuarios = new BibliUsuario[qtd];
                     
                  
-                    for(int i = 0; i<usuarios.length;i++){
+                    for(i = 0; i<usuarios.length;i++){
                         scan.nextLine();
                         System.out.println("Digite o nome do usuario");
                         nomeUsu = scan.nextLine();
@@ -49,13 +50,35 @@ public class BibliMain {
                         idadeUsu = scan.nextInt();
                         scan.nextLine();
                         idUsu = (i + 1);
-                        usuarios[i] = new BibliUsuario(nomeUsu, sexoUsu, contatoUsu, idadeUsu, idUsu);
+                        usuarios[i] = new BibliUsuario(nomeUsu, sexoUsu, contatoUsu, idadeUsu, idUsu);    
                         System.out.println(usuarios[i].getNome() + " cadastrado com sucesso!!" + "\n" + "dê enter para prosseguir!");
                     }
                     break;
                 case 2:
-                    
+                    System.out.println("Deseja cadastrar quantos livro? ");
+                     qtd = scan.nextInt();
+                     scan.nextLine();
+                     
+                     BibliLivro[] livros = new BibliLivro[qtd];
+                     
+                    for (i = 0; i < qtd; i++){
+                        System.out.println("Informe o Titulo do livro: ");
+                        String titulo = scan.nextLine();
+                        System.out.println("Informe o autor do livro: ");
+                        String autor = scan.nextLine();
+                        System.out.println("Informe o ano de publicacao: ");
+                        int ano_pub = scan.nextInt();
+                        System.out.println("Informe a quantidade de exemplares desse livro: ");
+                        int exemplar = scan.nextInt();
+                        
+                        livros[i] = new BibliLivro(titulo, autor, ano_pub, exemplar);
+                        System.out.println("livro: " + livros[i].getTitulo() + ", cadastrado com sucesso! \n"
+                                + "De enter para continuar! "); 
+                        scan.nextLine();
+                    }
+                            
                     break;
+
                 case 3:
                     break;
                 case 4:

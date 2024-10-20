@@ -57,6 +57,7 @@ public class BibliMain {
                     
                     break;
                 case 3:
+                    System.out.println("Listagem de livros");
                     break;
                 case 4:
                     break;

@@ -50,7 +50,7 @@ public class BibliMain {
                     
                     int soma = usuarios.length - qtdUsuarios;
                     if(qtd < soma){
-                        for(int i = qtdUsuarios; i< (qtdUsuarios+qtd) ;i++){
+                        for(int i = qtdUsuarios; i < (qtdUsuarios+qtd) ;i++){
                             scan.nextLine();
                             System.out.println("Digite o nome do usuario");
                             nomeUsu = scan.nextLine();

@@ -21,12 +21,10 @@ public class BibliMain {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-        int soma = 0;
+        int soma = 0; //variavel para fazer o calculo se tem espaço no array
         int qtd = 0; 
-         int cadLiv;
-
-        int soma = 0; // variavel para fazer o calculo se tem espaço no array
-        int qtd = 0;  
+        int cadLiv = 0;
+        
 
         String nomeUsu, sexoUsu, contatoUsu; // variaveis para cadastro de usuario
         int idadeUsu, idUsu;// variaveis para cadastro de usuario
@@ -137,18 +135,21 @@ public class BibliMain {
                     System.out.println("================================================");
                     System.out.println("              LISTAGEM DE LIVRROS               ");
                     System.out.println("================================================");
-                    for (int  i = 0; i <cadLiv; i++){
+                    //for (int  i = 0; i <cadLiv; i++){
                             
-                        }
+                      //  }
                         
-                    }
+                    //}
                     
                     break;
                 case 5:
+                    System.out.println("");
                     break;
                 case 6:
+                    System.out.println("");
                     break;
                 case 7:
+                    System.out.println("");
                     break;
                 default:
                     System.out.println("Opção errada!!!");

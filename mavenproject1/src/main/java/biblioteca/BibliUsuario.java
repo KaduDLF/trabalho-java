@@ -29,7 +29,7 @@ public class BibliUsuario {
 
     @Override
     public String toString() {
-        return nome; 
+        return "nome: " + this.nome + " id: " + this.id; 
     }   
         
      

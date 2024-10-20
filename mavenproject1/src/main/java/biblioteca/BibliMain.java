@@ -25,6 +25,7 @@ public class BibliMain {
         String nomeUsu, sexoUsu, contatoUsu; // variaveis para cadastro de usuario
         int idadeUsu, idUsu; // variaveis para cadastro de usuario
         System.out.println("Bem vindo ao sistema de biblioteca!");
+        BibliUsuario[] usuarios = null;
         
         menu(); // mostrando o menu na tela
         
@@ -37,7 +38,7 @@ public class BibliMain {
                 case 1:
                     System.out.println("Deseja cadastrar quantos usuarios?");
                     qtd = scan.nextInt();
-                    BibliUsuario[] usuarios = new BibliUsuario[qtd];
+                    usuarios = new BibliUsuario[qtd];
                     
                  
                     for(int i = 0; i<usuarios.length;i++){
@@ -46,7 +47,7 @@ public class BibliMain {
                         nomeUsu = scan.nextLine();
                         System.out.println("Digite o sexo do usuario");
                         sexoUsu = scan.nextLine();
-                        System.out.println("Digite o contato do usuario, ex'(62)4402-8922'");
+                        System.out.println("Digite o contato do usuario, ex'(62)4002-8922'");
                         contatoUsu = scan.nextLine();
                         System.out.println("Digite a idade do usuario");
                         idadeUsu = scan.nextInt();
@@ -85,8 +86,9 @@ public class BibliMain {
                     System.out.println("Listagem de Usuarios");
                     scan.nextLine();
                     for(BibliUsuario usu : usuarios){
-                        
+                        System.out.println(usu);
                     }
+                    scan.nextLine(); // aguardar o enter para prosseguir
                     break;
                 case 4:
                     break;

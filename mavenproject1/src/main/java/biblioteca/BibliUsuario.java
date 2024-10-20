@@ -15,7 +15,7 @@ public class BibliUsuario {
         this.sexo = sexo;
         this.contato = contato;
         this.idade = idade;
-        this.id = idade;
+        this.id = id;
     }
     
     String getNome(){

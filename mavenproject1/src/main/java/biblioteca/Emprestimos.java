@@ -4,7 +4,6 @@ public class Emprestimos {
     private BibliLivro livro;
     private String dataEmpr;
     private String datadevol;
-    private int idEmpr;
 
     public void setDataEmpr(String dataEmpr) {
         this.dataEmpr = dataEmpr;

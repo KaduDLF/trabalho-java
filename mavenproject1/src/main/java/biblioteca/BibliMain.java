@@ -12,23 +12,49 @@ public class BibliMain {
         System.out.println(" 5 - Associar emprestimo");
         System.out.println(" 6 - devolver algum livro");
         System.out.println(" 7 - sair");
+        System.out.println("-------------------------------------");
         
     } // função pra mostrar o menu
            
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        int qtd; 
+        String nomeUsu, sexoUsu, contatoUsu; // variaveis para cadastro de usuario
+        int idadeUsu, idUsu; // variaveis para cadastro de usuario
         System.out.println("Bem vindo ao sistema de biblioteca!");
         
         menu(); // mostrando o menu na tela
         
-        System.out.println("escolha uma opção");
+     
+        System.out.println("escolha uma opcao");
         int opc = scan.nextInt();
-        
+                
         while(opc != 7){
             switch(opc){
                 case 1:
+                    System.out.println("Deseja cadastrar quantos usuarios?");
+                    qtd = scan.nextInt();
+                    BibliUsuario[] usuarios = new BibliUsuario[qtd];
+                    
+                 
+                    for(int i = 0; i<usuarios.length;i++){
+                        scan.nextLine();
+                        System.out.println("Digite o nome do usuario");
+                        nomeUsu = scan.nextLine();
+                        System.out.println("Digite o sexo do usuario");
+                        sexoUsu = scan.nextLine();
+                        System.out.println("Digite o contato do usuario, ex'(62)4402-8922'");
+                        contatoUsu = scan.nextLine();
+                        System.out.println("Digite a idade do usuario");
+                        idadeUsu = scan.nextInt();
+                        scan.nextLine();
+                        idUsu = (i + 1);
+                        usuarios[i] = new BibliUsuario(nomeUsu, sexoUsu, contatoUsu, idadeUsu, idUsu);
+                        System.out.println(usuarios[i].getNome() + " cadastrado com sucesso!!" + "\n" + "dê enter para prosseguir!");
+                    }
                     break;
                 case 2:
+                    
                     break;
                 case 3:
                     break;
@@ -39,9 +65,13 @@ public class BibliMain {
                 case 6:
                     break;
                 default:
-                    
+                    System.out.println("Opção errada!!!");
                     break;
             }
+            menu();
+            System.out.println("escolha outra opcao");
+            opc = scan.nextInt();
+            
         }
         
     }

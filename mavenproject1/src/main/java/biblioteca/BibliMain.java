@@ -17,6 +17,7 @@ public class BibliMain {
            
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        System.out.println("Bem vindo ao sistema de biblioteca!");
         
     }
 }

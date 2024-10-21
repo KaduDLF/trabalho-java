@@ -33,7 +33,7 @@ public class BibliMain {
         int qtdUsuarios = 0;
         System.out.println("Bem vindo ao sistema de biblioteca!");
         BibliUsuario[] usuarios = new BibliUsuario[100];
-
+        BibliLivro[] livros = null;
         
         menu(); // mostrando o menu na tela
         
@@ -87,7 +87,7 @@ public class BibliMain {
                     System.out.println("Sua biblioteca tem espaço para quantos livros? ");
                     int qntdLiv = scan.nextInt();
                     scan.nextLine();
-                    BibliLivro[] livros = new BibliLivro[qntdLiv];
+                    livros = new BibliLivro[qntdLiv];
                      
                     System.out.println("Deseja cadastrar quantos livros? ");
                     cadLiv = scan.nextInt();
@@ -143,7 +143,21 @@ public class BibliMain {
                     
                     break;
                 case 5:
-                    System.out.println("");
+                    System.out.println("=================================================");
+                    System.out.println("         LISTAGEM DE LIVROS DISPONÍVEIS          ");
+                    System.out.println("=================================================");
+                        if(livros == null){
+                            System.out.println("Não há livros cadastrado!");
+                        } else {
+                            for(int i = 0; i < q_livros; i++){
+                                if(livros[i] != null && livros[i].getExemplares() > 0){
+                                    System.out.println("Os exemplares disponíveis são: " + livros[i].getExemplares());
+                                }
+                            }
+                        }
+                            
+
+                        scan.nextLine(); // esperar o enter para seguir
                     break;
                 case 6:
                     System.out.println("");

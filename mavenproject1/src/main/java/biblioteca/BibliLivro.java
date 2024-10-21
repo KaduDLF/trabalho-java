@@ -7,14 +7,14 @@ public class BibliLivro {
     
     private String titulo;
     private String autor;
-    private int AnoPub;
+    private int anoPub;
     private int exemplares;
     private int idLivro;
     
-    public BibliLivro(String titulo, String autor, int AnoPub, int exemplares) {
+    public BibliLivro(String titulo, String autor, int anoPub, int exemplares) {
         this.titulo = titulo;
         this.autor = autor;
-        this.AnoPub = AnoPub;
+        this.anoPub = anoPub;
         this.exemplares = exemplares;
     }
     
@@ -35,11 +35,11 @@ public class BibliLivro {
     }
     
     public int getAnoPub(){
-        return AnoPub;
+        return anoPub;
     }
     
     public void setAnoPub(int anoPublicacao){
-        this.AnoPub = anoPublicacao;
+        this.anoPub = anoPublicacao;
     }
     
     public int getExemplares(){
@@ -56,8 +56,11 @@ public class BibliLivro {
     
     @Override
     public String toString() {
-        return "Título: " + this.titulo + ", Autor: " + this.autor + ", Ano de Publicacao:" + 
-                this.AnoPub + ", Quantidade de Exemplares: " + this.exemplares + ", Id Livro" + this.idLivro; 
+        return "Título: " + this.titulo + 
+               ", Autor: " + this.autor + 
+               ", Ano de Publicacao:" + this.anoPub + 
+               ", Quantidade de Exemplares: " + this.exemplares + 
+               ", Id Livro" + this.idLivro; 
     }
     
 }

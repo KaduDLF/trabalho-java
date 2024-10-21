@@ -120,7 +120,7 @@ public class BibliMain {
                             System.out.println("Livro: " + livros[i].getTitulo()+ " cadastrado com sucesso!");
                             scan.nextLine();
                             qLiv++;   
-                            restLiv = qntdLiv - qLiv;
+                            restLiv = qntdLiv - qLiv;;
                             System.out.println("Resta agora " + restLiv + " livros!");
                             System.out.println("------------------------------------");
                         }

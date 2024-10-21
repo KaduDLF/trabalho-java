@@ -14,7 +14,7 @@ public class BibliLivro {
     public BibliLivro(String titulo, String autor, int AnoPub, int exemplares) {
         this.titulo = titulo;
         this.autor = autor;
-        this.AnoPub = anoPublicacao;
+        this.AnoPub = AnoPub;
         this.exemplares = exemplares;
     }
     

@@ -82,7 +82,7 @@ public class BibliMain {
                     break;
                 case 2:
                     System.out.println("=================================================");
-                    System.out.println("               CADASTRO DE LIVROS                ");
+                    System.out.println("              CADASTRO DE LIVROS                 ");
                     System.out.println("=================================================");
                      
                     System.out.println("Sua biblioteca tem espaço para quantos livros? ");

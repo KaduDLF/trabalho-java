@@ -17,10 +17,10 @@ public class BibliMain {
         System.out.println("-------------------------------------");
         
     } // função pra mostrar o menu
-           
+    
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-
+        
         int soma = 0; //variavel para fazer o calculo se tem espaço no array
         int qtd = 0; 
         int cadLiv = 0;
@@ -105,8 +105,8 @@ public class BibliMain {
                     scan.nextLine();
                      
                     if(cadLiv <= restLiv){
-                        for(int i = 0; i < (cadLiv); i++){
-                            System.out.print("Titulo: ");
+                        for(int i = 0; i < (qLiv + cadLiv); i++){ //somar as novas variaveis ate a ja existente
+                            System.out.print("Titulo: "); 
                             String titulo = scan.nextLine();
                             System.out.print("Autor: ");
                             String autor = scan.nextLine();

@@ -7,15 +7,15 @@ public class BibliLivro {
     
     private String titulo;
     private String autor;
-    private int anoPublicacao;
-    private int exemplarDisponivel;
+    private int AnoPub;
+    private int exemplares;
     private int idLivro;
     
-    public BibliLivro(String titulo, String autor, int anoPublicacao, int exemplarDisponivel) {
+    public BibliLivro(String titulo, String autor, int AnoPub, int exemplares) {
         this.titulo = titulo;
         this.autor = autor;
-        this.anoPublicacao = anoPublicacao;
-        this.exemplarDisponivel = exemplarDisponivel;
+        this.AnoPub = anoPublicacao;
+        this.exemplares = exemplares;
     }
     
     public String getTitulo() {
@@ -34,25 +34,30 @@ public class BibliLivro {
         this.autor = autor;
     }
     
-    public int getAnoPublicacao(){
-        return anoPublicacao;
+    public int getAnoPub(){
+        return AnoPub;
     }
     
-    public void setAnoPublicacao(int anoPublicacao){
-        this.anoPublicacao = anoPublicacao;
+    public void setAnoPub(int anoPublicacao){
+        this.AnoPub = anoPublicacao;
     }
     
-    public int getExemplarDisponivel(){
-        return exemplarDisponivel;
+    public int getExemplares(){
+        return exemplares;
     }
     
-    public void setexEmplarDisponivel(int exemplarDisponivel){
-        this.exemplarDisponivel = exemplarDisponivel;
+    public void setexEmplares(int exemplarDisponivel){
+        this.exemplares = exemplarDisponivel;
+    }
+    
+    public int getIdLivro(){
+        return idLivro;
     }
     
     @Override
     public String toString() {
-        return "Título: " + titulo + ", Autor: " + autor + ", Ano:" + anoPublicacao + ", Exemplares: " + exemplarDisponivel;
+        return "Título: " + this.titulo + ", Autor: " + this.autor + ", Ano de Publicacao:" + 
+                this.AnoPub + ", Quantidade de Exemplares: " + this.exemplares + ", Id Livro" + this.idLivro; 
     }
     
 }

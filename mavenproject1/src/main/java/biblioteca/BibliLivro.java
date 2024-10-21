@@ -50,4 +50,9 @@ public class BibliLivro {
         this.exemplarDisponivel = exemplarDisponivel;
     }
     
+    @Override
+    public String toString() {
+        return "Título: " + titulo + ", Autor: " + autor + ", Ano:" + anoPublicacao + ", Exemplares: " + exemplarDisponivel;
+    }
+    
 }

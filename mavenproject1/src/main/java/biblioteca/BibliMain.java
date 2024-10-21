@@ -24,7 +24,8 @@ public class BibliMain {
         int soma = 0; //variavel para fazer o calculo se tem espaço no array
         int qtd = 0; 
         int cadLiv = 0;
-        
+        int qntdLiv = 0;
+        int qLiv = 0;
 
         String nomeUsu, sexoUsu, contatoUsu; // variaveis para cadastro de usuario
         int idadeUsu, idUsu;// variaveis para cadastro de usuario
@@ -85,32 +86,47 @@ public class BibliMain {
                     System.out.println("=================================================");
                      
                     System.out.println("Sua biblioteca tem espaço para quantos livros? ");
-                    int qntdLiv = scan.nextInt();
+                    qntdLiv = scan.nextInt();
                     scan.nextLine();
                     livros = new BibliLivro[qntdLiv];
+                    
+                    int quantidade_livros = 0;
+                    for (int i = 0; i < livros.length; i++){
+                        if (livros[i]!= null){
+                            quantidade_livros++;
+                            
+                        }
+                    }
+                    restLiv = qntdLiv - quantidade_livros;
+                    System.out.println("Restam " +restLiv+ " livros para cadastro!");
                      
                     System.out.println("Deseja cadastrar quantos livros? ");
                     cadLiv = scan.nextInt();
                     scan.nextLine();
                      
-                    for(int i = 0; i < cadLiv; i++){
-                        System.out.print("Titulo: ");
-                        String titulo = scan.nextLine();
-                        System.out.print("Autor: ");
-                        String autor = scan.nextLine();
-                        System.out.print("Ano de Publicacao: ");
-                        int anoPub = scan.nextInt();
-                        System.out.print("Quantidade de Exemplares: ");
-                        int exemplares = scan.nextInt();
+                    if(cadLiv <= restLiv){
+                        for(int i = 0; i < (cadLiv); i++){
+                            System.out.print("Titulo: ");
+                            String titulo = scan.nextLine();
+                            System.out.print("Autor: ");
+                            String autor = scan.nextLine();
+                            System.out.print("Ano de Publicacao: ");
+                            int anoPub = scan.nextInt();
+                            System.out.print("Quantidade de Exemplares: ");
+                            int exemplares = scan.nextInt();
                          
-                        livros[i] = new BibliLivro(titulo, autor, anoPub, exemplares);
-                        q_livros++;
-                        System.out.println("Livro: " + livros[i].getTitulo()+ " cadastrado com sucesso!");
-                        scan.nextLine();
-                        restLiv = qntdLiv - q_livros;
+                            livros[i] = new BibliLivro(titulo, autor, anoPub, exemplares);
+                        
+                            System.out.println("Livro: " + livros[i].getTitulo()+ " cadastrado com sucesso!");
+                            scan.nextLine();
+                            qLiv++;   
+                            restLiv = qntdLiv - qLiv;
+                            System.out.println("Resta agora " + restLiv + " livros!");
+                            System.out.println("------------------------------------");
+                        }
+                    }else{
+                        System.out.println("Nao é possivel cadastrar mais livros!");  
                     }
-                     
-                    System.out.println("Restam para cadastrar " + restLiv + " livros!");
                             
                     break;
 
@@ -138,17 +154,25 @@ public class BibliMain {
                     System.out.println("================================================");
                     for (int  i = 0; i < qntdLiv; i++){
                         if (livros[i] != null){
+                            System.out.println("================================================");
                             System.out.println("Titulo: " + livros[i].getTitulo());
-                            //teste .cpp
+                            System.out.println("Autor: " + livros[i].getAutor());
+                            System.out.println("Ano de publicacao: " + livros[i].getAnoPub());
+                            System.out.println("Exemplares do livro: " + livros[i].getExemplares());
+                            System.out.println("================================================");
                                     
-                            
+                                                
                         }
-                            
-
+                    }
+                    if (restLiv > 0){
+                        System.out.println("Ainda restam " + restLiv + " livros para cadastrar!");
                         
+                    } else if (restLiv == 0) {
+                        System.out.println("Esgotado!");
                     }
                     
                     break;
+                    
                 case 5:
                     System.out.println("=================================================");
                     System.out.println("         LISTAGEM DE LIVROS DISPONÍVEIS          ");

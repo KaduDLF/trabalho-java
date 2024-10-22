@@ -4,7 +4,7 @@ package biblioteca;
 
 
 public class BibliLivro {
-    
+    private BibliExemplares[] exemplar;
     private String titulo;
     private String autor;
     private int anoPub;
@@ -16,6 +16,11 @@ public class BibliLivro {
         this.autor = autor;
         this.anoPub = anoPub;
         this.exemplares = exemplares;
+    }
+
+    public BibliExemplares[] getExemplar() {
+        this.exemplar = new BibliExemplares[3];
+        return exemplar;
     }
     
     public String getTitulo() {

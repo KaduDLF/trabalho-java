@@ -34,6 +34,8 @@ public class BibliMain {
         int q_livros = 0;
         int qtdUsuarios = 0;
         int qtdLiv = 0;
+        boolean algumLivroDisponivel = false;
+        
         System.out.println("Bem vindo ao sistema de biblioteca!");
         BibliUsuario[] usuarios = new BibliUsuario[100];
         BibliLivro[] livros = new BibliLivro[100];
@@ -88,7 +90,7 @@ public class BibliMain {
                     
                     //pra mostrar quantos livros ainda cabe nessa bagaça
                     restLiv = livros.length - qtdLiv;
-                    System.out.println("Sua biblioteca tem espaço para " + restLiv + " livros? ");
+                    System.out.println("Sua biblioteca tem espaço para " + restLiv + " livros ");
 
                     System.out.println("Deseja cadastrar quantos livros? ");
                     cadLiv = scan.nextInt(); // isso aqui ta mesma coisa
@@ -165,14 +167,15 @@ public class BibliMain {
                     }
 
                     break;
-
+                 // fazer um case antes desse para fazer o emprestimo, para depois saber se tem livro disponivelm ou nao
+                    // provavelmente tera q fazer alteração nesse case
                 case 5:
                     System.out.println("=================================================");
                     System.out.println("         LISTAGEM DE LIVROS DISPONÍVEIS          ");
                     System.out.println("=================================================");
 
                     if (qtdLiv > 0) {
-                        boolean algumLivroDisponivel = false;
+                        algumLivroDisponivel = false;
 
                         // percorre o array 
                         for (int i = 0; i < qLiv; i++) {

@@ -27,7 +27,7 @@ public class BibliMain {
         int cadLiv = 0;// cadastro de livros;
         int qntdLiv = 0; // quantidade total de livros
         int qLiv = 0;
-
+        int codLiv;
         String nomeUsu, sexoUsu, contatoUsu; // variaveis para cadastro de usuario
         int idadeUsu, idUsu;// variaveis para cadastro de usuario
         int restLiv = 0;
@@ -198,7 +198,34 @@ public class BibliMain {
                     scan.nextLine(); // Esperar o enter para seguir
                     break;
                 case 6:
-                    System.out.println("");
+                    System.out.println("========================================");
+                    System.out.println("                EMPRESTIMO              ");
+                    System.out.println("========================================");
+                    scan.nextLine(); // espera teclar enter para prosseguir 
+                    
+                    System.out.println("Deseja fazer um emprestimo de livro?, digite 1 para sim e 2 para não");
+                    int opcEmp = scan.nextInt();
+                    while(opcEmp == 1){
+                        System.out.println("Digite o codigo do livro que você deseja pegar emprestado");
+                        codLiv = scan.nextInt();
+                        
+                        // for para verificar se o livro esta disponivel;
+                        
+                        // for para verificar se o usuario existe;
+                        
+                        // for para anexar o livro ao usuario;
+                        
+                        // mostrar mensagem se deu erro ou não no cod
+                        
+                        
+                        
+                        
+                        
+                        
+                        System.out.println("Deseja fazer outro emprestimo de livro? 1 para sim e 2 para não");
+                        opcEmp = scan.nextInt();
+                    }
+                    
                     break;
                 case 7:
                     System.out.println("");

@@ -24,8 +24,8 @@ public class BibliMain {
 
         int soma = 0; //variavel para fazer o calculo se tem espaço no array
         int qtd = 0;
-        int cadLiv = 0;
-        int qntdLiv = 0;
+        int cadLiv = 0;// cadastro de livros;
+        int qntdLiv = 0; // quantidade total de livros
         int qLiv = 0;
 
         String nomeUsu, sexoUsu, contatoUsu; // variaveis para cadastro de usuario
@@ -106,9 +106,11 @@ public class BibliMain {
                             System.out.print("Quantidade de Exemplares: ");
                             int exemplares = scan.nextInt();
                             scan.nextLine();
+                            System.out.println("Informe o codigo do livro: ");
+                            int codigo = scan.nextInt();
                             
                             //cria um novo objeto e armaneza os livros ai
-                            livros[qtdLiv] = new BibliLivro(titulo, autor, anoPub, exemplares);
+                            livros[qtdLiv] = new BibliLivro(titulo, autor, anoPub, exemplares, codigo);
 
                             System.out.println("Livro: " + livros[i].getTitulo() + " cadastrado com sucesso!");
                             qtdLiv++; // atualiza a quantidade
@@ -150,6 +152,7 @@ public class BibliMain {
                             System.out.println("Autor: " + livros[i].getAutor());
                             System.out.println("Ano de publicacao: " + livros[i].getAnoPub());
                             System.out.println("Exemplares do livro: " + livros[i].getExemplares());
+                            System.out.println("Codigo: " + livros[i].getCodigo());
                             System.out.println("================================================");
 
                         }
@@ -206,17 +209,7 @@ public class BibliMain {
             opc = scan.nextInt();
 
         }
-<<<<<<< Updated upstream
-=======
-        criando case para emprestimo
 
-    System.out.print("Deseja pegar algum livro emprestado? ")
-    String ecolha = scan.nextLine();
-    if("sim".equals(escolha)){
-    System.out.println("Iforme o titulo do livro que voce deseja pegar: ");
-    
-    }
->>>>>>> Stashed changes
 
     }
 }

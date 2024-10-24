@@ -4,7 +4,6 @@ package biblioteca;
 
 
 public class BibliLivro {
-    private BibliExemplares[] exemplar;
     private String titulo;
     private String autor;
     private int anoPub;

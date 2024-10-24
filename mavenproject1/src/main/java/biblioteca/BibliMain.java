@@ -206,6 +206,21 @@ public class BibliMain {
             opc = scan.nextInt();
 
         }
+<<<<<<< Updated upstream
+=======
+        criando case para emprestimo
+
+    System.out.print("Deseja pegar algum livro emprestado? ")
+    String ecolha = scan.nextLine();
+    if("sim".equals(escolha)){
+    System.out.println("Iforme o titulo do livro que voce deseja pegar: ");
+    
+    }
+>>>>>>> Stashed changes
 
     }
 }
+
+
+
+

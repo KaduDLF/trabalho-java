@@ -78,7 +78,7 @@ public class BibliMain {
                             scan.nextLine();
                             idUsu = (i + 1);
                             usuarios[i] = new BibliUsuario(nomeUsu, sexoUsu, contatoUsu, idadeUsu, idUsu);
-                            System.out.println(usuarios[i].getNome() + " cadastrado com sucesso!!" + "\n" + "dê enter para prosseguir!");
+                            System.out.println(usuarios[i].getNome() + " cadastrado com sucesso!!" + "\n" + "Dê enter para prosseguir!");
                         }
 
                     } else {
@@ -113,12 +113,12 @@ public class BibliMain {
                             scan.nextLine();
                             System.out.println("Informe o codigo do livro: ");
                             int codigo = scan.nextInt();
-                            
                             //cria um novo objeto e armaneza os livros ai
                             livros[qtdLiv] = new BibliLivro(titulo, autor, anoPub, exemplares, codigo);
 
                             System.out.println("Livro: " + livros[i].getTitulo() + " cadastrado com sucesso!");
                             qtdLiv++; // atualiza a quantidade
+                            scan.nextLine(); // tava bugando e pulando o titulo
                         }
 
                         

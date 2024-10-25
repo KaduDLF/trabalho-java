@@ -8,7 +8,6 @@ public class BibliLivro {
     private String autor;
     private int anoPub;
     private int exemplares;
-    private int idLivro;
     private int codigo;
     private boolean disponivel;
     
@@ -64,9 +63,7 @@ public class BibliLivro {
         this.exemplares = exemplarDisponivel;
     }
     
-    public int getIdLivro(){
-        return idLivro;
-    }
+    
     
     public int getCodigo(){
         return  codigo;

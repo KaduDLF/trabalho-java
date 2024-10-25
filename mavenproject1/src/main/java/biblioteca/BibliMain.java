@@ -220,27 +220,23 @@ public class BibliMain {
                     
                 case 6:
                     System.out.println("==========================================");
-                    System.out.println("            LIVROS DISPONIVEL             ");
+                    System.out.println("            LIVROS DISPONIVEIS            ");
                     System.out.println("==========================================");
                     System.out.println("Deseja ver os livros disponiveis? ");
                     escolha = scan.nextLine().toLowerCase();
                     if ("sim".equals(escolha) || "s".equals(escolha)){
-                        for (int i = 0; i <= livros.length; i++){
-                            if(livros[i].getDisponivel()){ // se livro.disponivel for true
+                        for(int i = 0; i < livros.length; i++){
+                            if(livros[i].getDisponivel() && livros[i] != null){ // se livro.disponivel for true e diferente de null
                                 System.out.println("CODIGO: " + livros[i].getCodigo());
                                 System.out.println("TITULO: " + livros[i].getTitulo());
                                 System.out.println("ANO DE PUBLICAÇÃO: " + livros[i].getAnoPub());
                                 System.out.println("AUTOR:: " + livros[i].getAutor());
-                            }
-                            if (livros[i].emprestarExemplares(livEmp) > 0){
-                                System.out.println("O livro " + livros[i].getTitulo() + " possui " + livros[i].emprestarExemplares(livEmp) + " copias ");
-
-                            } else {
-                                System.out.println("O livro " + livros[i].getTitulo() + " esta esgotado! ");
+                                System.out.println("O livro " + livros[i].getTitulo() + " possui " + livros[i].getExemplares() + " copias disponiveis");
                             }
                         }
                     }else{
                         System.out.println("então beleza po");
+                        scan.nextLine();
                     }
                     break;
                 case 7:

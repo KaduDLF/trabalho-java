@@ -11,10 +11,11 @@ public class BibliMain {
         System.out.println(" 2 - Cadastro de Livro");
         System.out.println(" 3 - listar todos os usuarios");
         System.out.println(" 4 - listar todos os livros");
-        System.out.println(" 5 - listar todos os livros disponiveis");
-        System.out.println(" 6 - Associar emprestimo");
-        System.out.println(" 7 - devolver algum livro");
-        System.out.println(" 8 - sair");
+        System.out.println(" 5 - Emprestimo ");
+        System.out.println(" 6 - listar todos os livros disponiveis");
+        System.out.println(" 7 - Associar emprestimo");
+        System.out.println(" 8 - devolver algum livro");
+        System.out.println(" 9 - sair");
         System.out.println("-------------------------------------");
 
     } // função pra mostrar o menu
@@ -100,7 +101,7 @@ public class BibliMain {
                     scan.nextLine();
 
                     //pra vereficar se o numero n vai passar dessa bagaça 
-                    if (cadLiv <= (livros.length - qtdLiv)) {
+                    if (cadLiv <= (livros.length + qtdLiv)) {
                         for (int i = 0; i < cadLiv; i++) { //loop de cria
                             System.out.print("Titulo: ");
                             String titulo = scan.nextLine();
@@ -111,7 +112,7 @@ public class BibliMain {
                             System.out.print("Quantidade de Exemplares: ");
                             int exemplares = scan.nextInt();
                             scan.nextLine();
-                            System.out.println("Informe o codigo do livro: ");
+                            System.out.print("Informe o codigo do livro: ");
                             int codigo = scan.nextInt();
                             //cria um novo objeto e armaneza os livros ai
                             livros[qtdLiv] = new BibliLivro(titulo, autor, anoPub, exemplares, codigo);
@@ -148,9 +149,9 @@ public class BibliMain {
 
                 case 4:
                     System.out.println("================================================");
-                    System.out.println("              LISTAGEM DE LIVRROS               ");
+                    System.out.println("              LISTAGEM DE LIVROS               ");
                     System.out.println("================================================");
-                    for (int i = 0; i < qntdLiv; i++) {
+                    for (int i = 0; i < livros.length; i++) {
                         if (livros[i] != null) {
                             System.out.println("================================================");
                             System.out.println("Titulo: " + livros[i].getTitulo());
@@ -172,29 +173,7 @@ public class BibliMain {
                     break;
                  // fazer um case antes desse para fazer o emprestimo, para depois saber se tem livro disponivelm ou nao
                     // provavelmente tera q fazer alteração nesse case
-                case 6:
-                    System.out.println("==========================================");
-                    System.out.println("            LIVROS DISPONIVEL             ");
-                    System.out.println("==========================================");
-                    System.out.println("Deseja ver os livros disponiveis? ");
-                    escolha = scan.nextLine().toLowerCase();
-                    if ("sim".equals(escolha)){ // livro.length;
-                        for (int i = 0; i <= (qntdLiv + cadLiv); i++){
-                            System.out.println("CODIGO: " + livros[i].getCodigo());
-                            System.out.println("TITULO: " + livros[i].getTitulo());
-                            System.out.println("ANO DE PUBLICAÇÃO: " + livros[i].getAnoPub());
-                            System.out.println("AUTOR:: " + livros[i].getAutor());
-                            if (livros[i].emprestarExemplares(livEmp) > 0){
-                                System.out.println("O livro " + livros[i].getTitulo() + " possui " + livros[i].emprestarExemplares(livEmp) + " copias ");
-
-                            } else {
-                                System.out.println("O livro " + livros[i].getTitulo() + " esta esgotado! ");
-                            }
-                        }
-                    }
-                    break;
-                    
-                case 5:
+                    case 5:
                     System.out.println("========================================");
                     System.out.println("                EMPRESTIMO              ");
                     System.out.println("========================================");         
@@ -238,9 +217,38 @@ public class BibliMain {
                         
                         // mostrar mensagem se deu erro ou não no cod
 
+                    
+                case 6:
+                    System.out.println("==========================================");
+                    System.out.println("            LIVROS DISPONIVEL             ");
+                    System.out.println("==========================================");
+                    System.out.println("Deseja ver os livros disponiveis? ");
+                    escolha = scan.nextLine().toLowerCase();
+                    if ("sim".equals(escolha)){ // livro.length;
+                        for (int i = 0; i <= (qntdLiv + cadLiv); i++){
+                            System.out.println("CODIGO: " + livros[i].getCodigo());
+                            System.out.println("TITULO: " + livros[i].getTitulo());
+                            System.out.println("ANO DE PUBLICAÇÃO: " + livros[i].getAnoPub());
+                            System.out.println("AUTOR:: " + livros[i].getAutor());
+                            if (livros[i].emprestarExemplares(livEmp) > 0){
+                                System.out.println("O livro " + livros[i].getTitulo() + " possui " + livros[i].emprestarExemplares(livEmp) + " copias ");
+
+                            } else {
+                                System.out.println("O livro " + livros[i].getTitulo() + " esta esgotado! ");
+                            }
+                        }
+                    }
+                    break;
+                    
+                
                 case 7:
                     System.out.println("");
                     break;
+                    
+                case 8:
+                    System.out.println("");
+                    break;
+                    
                 default:
                     System.out.println("Opção errada!!!");
                     break;

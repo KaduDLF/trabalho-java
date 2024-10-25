@@ -70,6 +70,11 @@ public class BibliLivro {
         this.codigo = codigo;
     }
     
+    
+    public int emprestarExemplares(int livEmp){
+        return this.exemplares -= livEmp;
+    }
+    
     @Override
     public String toString() {
         return "Título: " + this.titulo + 

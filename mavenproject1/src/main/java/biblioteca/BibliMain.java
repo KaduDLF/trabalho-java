@@ -224,12 +224,14 @@ public class BibliMain {
                     System.out.println("==========================================");
                     System.out.println("Deseja ver os livros disponiveis? ");
                     escolha = scan.nextLine().toLowerCase();
-                    if ("sim".equals(escolha)){ // livro.length;
-                        for (int i = 0; i <= (qntdLiv + cadLiv); i++){
-                            System.out.println("CODIGO: " + livros[i].getCodigo());
-                            System.out.println("TITULO: " + livros[i].getTitulo());
-                            System.out.println("ANO DE PUBLICAÇÃO: " + livros[i].getAnoPub());
-                            System.out.println("AUTOR:: " + livros[i].getAutor());
+                    if ("sim".equals(escolha) || "s".equals(escolha)){
+                        for (int i = 0; i <= livros.length; i++){
+                            if(livros[i].getDisponivel()){ // se livro.disponivel for true
+                                System.out.println("CODIGO: " + livros[i].getCodigo());
+                                System.out.println("TITULO: " + livros[i].getTitulo());
+                                System.out.println("ANO DE PUBLICAÇÃO: " + livros[i].getAnoPub());
+                                System.out.println("AUTOR:: " + livros[i].getAutor());
+                            }
                             if (livros[i].emprestarExemplares(livEmp) > 0){
                                 System.out.println("O livro " + livros[i].getTitulo() + " possui " + livros[i].emprestarExemplares(livEmp) + " copias ");
 
@@ -237,10 +239,10 @@ public class BibliMain {
                                 System.out.println("O livro " + livros[i].getTitulo() + " esta esgotado! ");
                             }
                         }
+                    }else{
+                        System.out.println("então beleza po");
                     }
                     break;
-                    
-                
                 case 7:
                     System.out.println("");
                     break;

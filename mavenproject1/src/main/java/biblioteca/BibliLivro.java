@@ -10,6 +10,7 @@ public class BibliLivro {
     private int exemplares;
     private int idLivro;
     private int codigo;
+    private boolean disponivel;
     
     public BibliLivro(String titulo, String autor, int anoPub, int exemplares, int codigo) {
         this.titulo = titulo;
@@ -17,6 +18,7 @@ public class BibliLivro {
         this.anoPub = anoPub;
         this.exemplares = exemplares;
         this.codigo = codigo;
+        this.disponivel = true;
     }
 
     //public BibliExemplares[] getExemplar() {
@@ -25,6 +27,10 @@ public class BibliLivro {
     //}
     // Fazer uma analise coerente sobre esse valor declarado dentro dos colchetes.
     //se a quantidade for maior que 3, vai acontecer oq??  felipe fez esse comentario
+    
+    public boolean getDisponivel(){
+        return this.disponivel;
+    }
     
     public String getTitulo() {
         return titulo;

@@ -6,12 +6,12 @@ package biblioteca;
 public class BibliLivro {
     private String titulo;
     private String autor;
-    private int anoPub;
+    private String anoPub;
     private int exemplares;
     private int codigo;
     private boolean disponivel;
     
-    public BibliLivro(String titulo, String autor, int anoPub, int exemplares, int codigo) {
+    public BibliLivro(String titulo, String autor, String anoPub, int exemplares, int codigo) {
         this.titulo = titulo;
         this.autor = autor;
         this.anoPub = anoPub;
@@ -35,25 +35,25 @@ public class BibliLivro {
         return titulo;
     }
     
-    public void setTitulo(String titulo){
-        this.titulo = titulo;
-    }
+    //public void setTitulo(String titulo){
+    //    this.titulo = titulo;
+    //}
    
     public String getAutor(){
        return autor;
     }
     
-    public void setAutor(String autor){
-        this.autor = autor;
-    }
+    //public void setAutor(String autor){
+    //    this.autor = autor;
+    //}
     
-    public int getAnoPub(){
+    public String getAnoPub(){
         return anoPub;
     }
     
-    public void setAnoPub(int anoPublicacao){
-        this.anoPub = anoPublicacao;
-    }
+   // public void setAnoPub(int anoPublicacao){
+   //     this.anoPub = anoPublicacao;
+    //}
     
     public int getExemplares(){ 
         return exemplares;
@@ -67,10 +67,6 @@ public class BibliLivro {
     
     public int getCodigo(){
         return  codigo;
-    }
-    
-    public void setCodigo(int codigo){
-        this.codigo = codigo;
     }
     
     

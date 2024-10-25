@@ -27,18 +27,18 @@ public class BibliMain {
         int qtd = 0;
         int cadLiv = 0;// cadastro de livros;
         int qntdLiv = 0; // quantidade total de livros
-        int qLiv = 0;
-        int codLiv;
         String nomeUsu, sexoUsu, contatoUsu; // variaveis para cadastro de usuario
         int idadeUsu, idUsu;// variaveis para cadastro de usuario
         int restLiv = 0;
-        int q_livros = 0;
         int qtdUsuarios = 0;
         int qtdLiv = 0;
-        boolean algumLivroDisponivel = false;
-        String escolha;
+        String escolha, anoPub;
         int codigo_e;
         int livEmp = 0;
+        int codigo;
+        int exemplares;
+        
+
         
         System.out.println("Bem vindo ao sistema de biblioteca!");
         BibliUsuario[] usuarios = new BibliUsuario[100];
@@ -79,7 +79,7 @@ public class BibliMain {
                             scan.nextLine();
                             idUsu = (i + 1);
                             usuarios[i] = new BibliUsuario(nomeUsu, sexoUsu, contatoUsu, idadeUsu, idUsu);
-                            System.out.println(usuarios[i].getNome() + " cadastrado com sucesso!!" + "\n" + "Dê enter para prosseguir!");
+                            System.out.println("Nome: " + usuarios[i].getNome() + " foi cadastrado com sucesso!!" + "\n" + "Dê enter para prosseguir!");
                         }
 
                     } else {
@@ -91,7 +91,13 @@ public class BibliMain {
                     System.out.println("=================================================");
                     System.out.println("              CADASTRO DE LIVROS                 ");
                     System.out.println("=================================================");
+                    qtdLiv = 0;
                     
+                    for (int i = 0; i < livros.length; i++){
+                        if (livros[i] != null){
+                            qtdLiv++;
+                        }
+                    }
                     //pra mostrar quantos livros ainda cabe nessa bagaça
                     restLiv = livros.length - qtdLiv;
                     System.out.println("Sua biblioteca tem espaço para " + restLiv + " livros ");
@@ -101,24 +107,21 @@ public class BibliMain {
                     scan.nextLine();
 
                     //pra vereficar se o numero n vai passar dessa bagaça 
-                    if (cadLiv <= (livros.length + qtdLiv)) {
-                        for (int i = 0; i < cadLiv; i++) { //loop de cria
+                    if (cadLiv <= restLiv) {
+                        for (int i = qtdLiv; i < cadLiv; i++) { //loop de cria
                             System.out.print("Titulo: ");
                             String titulo = scan.nextLine();
                             System.out.print("Autor: ");
                             String autor = scan.nextLine();
                             System.out.print("Ano de Publicacao: ");
-                            int anoPub = scan.nextInt();
+                            anoPub = scan.nextLine();
                             System.out.print("Quantidade de Exemplares: ");
-                            int exemplares = scan.nextInt();
+                            exemplares = scan.nextInt();
                             scan.nextLine();
-                            System.out.print("Informe o codigo do livro: ");
-                            int codigo = scan.nextInt();
-                            //cria um novo objeto e armaneza os livros ai
-                            livros[qtdLiv] = new BibliLivro(titulo, autor, anoPub, exemplares, codigo);
-
+                            codigo = (i + 1);
+                            
+                            livros[i] = new BibliLivro(titulo, autor, anoPub, exemplares, codigo);                           
                             System.out.println("Livro: " + livros[i].getTitulo() + " cadastrado com sucesso!");
-                            qtdLiv++; // atualiza a quantidade
                             scan.nextLine(); // tava bugando e pulando o titulo
                         }
 
@@ -126,6 +129,8 @@ public class BibliMain {
                     } else {
                         System.out.println("Nao é possivel cadastrar mais livros!");
                     }
+                    
+                    
 
                     break;
 

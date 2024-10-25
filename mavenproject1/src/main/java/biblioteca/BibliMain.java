@@ -184,33 +184,27 @@ public class BibliMain {
                     System.out.println("========================================");         
                     System.out.println("Deseja pegar um livro emprestado? ");   
                     escolha = scan.nextLine().toLowerCase();
-                    while("sim".equals(escolha)){
-                        System.out.println("Informe o codigo do livro que voce deseja pegar emprestado: ");
-                        codigo_e = scan.nextInt();
+                    while("sim".equals(escolha) || "s".equals(escolha)){
+                        System.out.println("Qual seu codigo de usuario?");
+                        idUsu = scan.nextInt();
                         scan.nextLine();
-                        for (int i = 0; i < livros.length; i++){
-                            if (livros[i].getCodigo() == codigo_e){
-                                System.out.println("Informe a data de emprestimo: ");
-                                String emp = scan.nextLine();
-                                emprestimo.setDataEmpr(emp);
-                                System.out.println("Informe a data de devolucao: ");
-                                String dev = scan.nextLine();
-                                emprestimo.setDatadevol(dev);
-                                livEmp++;
-                                livros[i].emprestarExemplares(livEmp);
-                                if (livros[i].emprestarExemplares(livEmp) > 0){
-                                    System.out.println("O livro: " + livros[i].getTitulo()+ " possui: " + livros[i].emprestarExemplares(livEmp) + " copias!");
-
-                                } else {
-                                    System.out.print("Nao esta disponivel no momento - ESGOTADO! ");
-                                    scan.nextLine();
-                                    break;
-                                }
+                        boolean encontrado = false;
+                        for(int i = 0; i< usuarios.length; i++){
+                            if(idUsu == usuarios[i].getId()){
+                                encontrado = true; // se encontrado vira true
+                                break;
                             }
                         }
+                        if(encontrado){
+                            System.out.println("Informe o codigo do livro que voce deseja pegar emprestado: ");
+                            codigo_e = scan.nextInt();
+                            scan.nextLine();
+                            
+                            
+                        }else{
+                            System.out.println("usuario não encontrado");
+                        }
                         
-                        System.out.println("Deseja pegar outro livro emprestado? ");
-                        escolha= scan.nextLine().toLowerCase();
                     }
                     break;
                         

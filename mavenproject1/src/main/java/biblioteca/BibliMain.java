@@ -43,7 +43,6 @@ public class BibliMain {
         System.out.println("Bem vindo ao sistema de biblioteca!");
         BibliUsuario[] usuarios = new BibliUsuario[100];
         BibliLivro[] livros = new BibliLivro[100];
-        Emprestimos emprestimo = new Emprestimos();
         menu(); // mostrando o menu na tela
 
         System.out.println("escolha uma opcao");
@@ -147,7 +146,7 @@ public class BibliMain {
                         }
 
                     }
-                    soma = 100 - qtdUsuarios;
+                    soma = usuarios.length - qtdUsuarios;
                     System.out.println("Restam " + soma + " espaços para cadastro de usuarios");
                     scan.nextLine(); // aguardar o enter para prosseguir
                     break;
@@ -184,6 +183,7 @@ public class BibliMain {
                     System.out.println("========================================");         
                     System.out.println("Deseja pegar um livro emprestado? ");   
                     escolha = scan.nextLine().toLowerCase();
+                    String dataDeEmp;
                     while("sim".equals(escolha) || "s".equals(escolha)){
                         System.out.println("Qual seu codigo de usuario?");
                         idUsu = scan.nextInt();
@@ -199,6 +199,24 @@ public class BibliMain {
                             System.out.println("Informe o codigo do livro que voce deseja pegar emprestado: ");
                             codigo_e = scan.nextInt();
                             scan.nextLine();
+                            encontrado = false;
+                            for(int i = 0; i< livros.length; i++){
+                            if(codigo_e == livros[i].getCodigo()){
+                                encontrado = true; // se encontrado vira true
+                                if(livros[i].getDisponivel()){
+                                    System.out.println("Que dia o livro foi emprestado ou vai ser emprestado? ");
+                                    dataDeEmp = scan.nextLine();
+                                    usuarios[idUsu - 1].emprestimos = new Emprestimos(livros[i], dataDeEmp);
+                                    usuarios[idUsu - 1].emprestimos.emprestar();
+                                }else{
+                                    System.out.println("o livro não esta disponivel");
+                                }
+                                break;
+                            }else{
+                                System.out.println("livro não encontrado");
+                            }
+                        }
+                            
                             
                             
                         }else{

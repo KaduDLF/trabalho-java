@@ -59,7 +59,7 @@ public class BibliLivro {
         return exemplares;
     }
     
-    public void setexEmplares(int exemplarDisponivel){
+    public void setExemplares(int exemplarDisponivel){
         this.exemplares = exemplarDisponivel;
     }
     

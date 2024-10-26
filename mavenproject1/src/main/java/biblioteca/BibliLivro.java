@@ -63,6 +63,9 @@ public class BibliLivro {
         this.exemplares = exemplarDisponivel;
     }
     
+    public void exemplares0(){
+        this.disponivel = false;
+    }
     
     
     public int getCodigo(){
@@ -71,6 +74,7 @@ public class BibliLivro {
     
     
     public int emprestarExemplares(int livEmp){
+        
         return this.exemplares -= livEmp;
     }
     

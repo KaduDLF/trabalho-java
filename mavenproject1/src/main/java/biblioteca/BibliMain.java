@@ -199,42 +199,30 @@ public class BibliMain {
                             System.out.println("Informe o codigo do livro que voce deseja pegar emprestado: ");
                             codigo_e = scan.nextInt();
                             scan.nextLine();
-                            encontrado = false;
                             for(int i = 0; i< livros.length; i++){
-                            if(codigo_e == livros[i].getCodigo()){
-                                encontrado = true; // se encontrado vira true
-                                if(livros[i].getDisponivel()){
-                                    System.out.println("Que dia o livro foi emprestado ou vai ser emprestado? ");
-                                    dataDeEmp = scan.nextLine();
-                                    usuarios[idUsu - 1].emprestimos = new Emprestimos(livros[i], dataDeEmp);
-                                    usuarios[idUsu - 1].emprestimos.emprestar();
+                                if(codigo_e == livros[i].getCodigo()){
+                                    
+                                    if(livros[i].getDisponivel()){
+                                        System.out.println("Que dia o livro foi emprestado ou vai ser emprestado? ");
+                                        dataDeEmp = scan.nextLine();
+                                        usuarios[idUsu - 1].emprestimos = new Emprestimos(livros[i], dataDeEmp);
+                                        usuarios[idUsu - 1].emprestimos.emprestar();
+                                    }else{
+                                        System.out.println("o livro não esta disponivel");
+                                    }
+                                    break;
                                 }else{
-                                    System.out.println("o livro não esta disponivel");
+                                    System.out.println("livro não encontrado");
                                 }
-                                break;
-                            }else{
-                                System.out.println("livro não encontrado");
                             }
-                        }
-                            
-                            
-                            
                         }else{
                             System.out.println("usuario não encontrado");
                         }
                         
+                    System.out.println("Deseja realizar outro emprestimo?");   
+                    escolha = scan.nextLine().toLowerCase();    
                     }
                     break;
-                        
-                        // for para verificar se o livro esta disponivel;
-                        
-                        // for para verificar se o usuario existe;
-                        
-                        // for para anexar o livro ao usuario;
-                        
-                        // mostrar mensagem se deu erro ou não no cod
-
-                    
                 case 6:
                     System.out.println("==========================================");
                     System.out.println("            LIVROS DISPONIVEIS            ");

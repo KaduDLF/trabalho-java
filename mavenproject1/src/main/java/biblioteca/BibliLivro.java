@@ -91,11 +91,11 @@ public class BibliLivro {
     
     @Override
     public String toString() {
-        return "Título: " + this.titulo + 
-               ", Autor: " + this.autor + 
-               ", Ano de Publicacao:" + this.anoPub + 
-               ", Quantidade de Exemplares: " + this.exemplares + 
-               ", Codigo do livro: " + this.codigo; 
+        return "Título: " + this.titulo + "\n "
+               +", Autor: " + this.autor + "\n "
+               + ", Ano de Publicacao:" + this.anoPub + "\n"
+               + ", Quantidade de Exemplares: " + this.exemplares + "\n "
+               + ", Codigo do livro: " + this.codigo; 
                //Id Livro" + this.idLivro; // mexi nesse retorno, esse id é de usuarios
     }
     

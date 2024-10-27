@@ -31,6 +31,10 @@ public class BibliUsuario {
         this.quantidadeEmprs += quantidadeEmprs;
     }
     
+    public void diminuirEmp(int quantidadeEmprs) {
+        this.quantidadeEmprs -= quantidadeEmprs;
+    }
+    
     
     int getId(){
         return this.id;

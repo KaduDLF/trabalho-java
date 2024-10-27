@@ -49,6 +49,9 @@ public class Emprestimos {
     public void setDatadevol(String datadevol) {
         this.datadevol = datadevol;
     }
+    public void diminuirQntEmp(){
+        this.usuario.diminuirEmp(1);
+    }
     
     public String getDataEmpr(){
         return this.dataEmpr;
@@ -56,10 +59,17 @@ public class Emprestimos {
     public void devolver(){
         this.livro.aumentarLivros(1);
     }
+    
+    public boolean setEmpAtivo(){
+        return this.emprestAtivo = false;
+    }
 
     @Override
     public String toString() {
-        return "usuario: " + this.usuario.getNome()+ " usuarios id: " + this.usuario.getId() + " livro: " + this.livro.getTitulo() + " livro id: " + this.livro.getCodigo();
+        return "usuario: " + this.usuario.getNome()+ "\n"
+                + " usuarios id: " + this.usuario.getId() + "\n"
+                + " livro: " + this.livro.getTitulo() + "\n"
+                + " livro id: " + this.livro.getCodigo();
     }
     
     

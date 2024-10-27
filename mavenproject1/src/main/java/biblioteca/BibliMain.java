@@ -15,7 +15,7 @@ public class BibliMain {
         System.out.println(" 4 - listar todos os livros");
         System.out.println(" 5 - Emprestimo ");
         System.out.println(" 6 - listar todos os livros disponiveis");
-        System.out.println(" 7 - Gravar em arquivo");
+        System.out.println(" 7 - Associar emprestimo");
         System.out.println(" 8 - devolver algum livro");
         System.out.println(" 9 - sair");
         System.out.println("-------------------------------------");
@@ -24,35 +24,34 @@ public class BibliMain {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        
 
         int soma = 0; //variavel para fazer o calculo se tem espaço no array
-        int qtd = 0; // quantidade de usuarios
+        int qtd = 0;
         int cadLiv = 0;// cadastro de livros;
-        int qtdLiv = 0; // quantidade total de livros
+        int qntdLiv = 0; // quantidade total de livros
         String nomeUsu, sexoUsu, contatoUsu; // variaveis para cadastro de usuario
         int idadeUsu, idUsu;// variaveis para cadastro de usuario
-        int restLiv = 0; // soma, se sobra livros
-        int qtdUsuarios = 0; // qtd usuarios a serem cadastrados
-        String escolha, anoPub; // escolha se sim ou não e ano de publicação dos livros
-        int codigo_e; // verificar se o codigo escolhido é o mesmo do livro
-        int codigo; // codigo do livro
-        int qtdEmprestimos;
-        int exemplares; // qtd de exemplares
-        String dataDeEmp; // dia de emprestimo
-        boolean livroEncontrado = false; // verificador das listas
-        boolean usuEncontrado = false; // verificador das listas
+        int restLiv = 0;
+        int qtdUsuarios = 0;
+        int qtdLiv = 0;
+        String escolha, anoPub;
+        int codigo_e;
+        int livEmp = 0;
+        int codigo;
+        int exemplares;
+        
+
         
         System.out.println("Bem vindo ao sistema de biblioteca!");
         BibliUsuario[] usuarios = new BibliUsuario[100];
         BibliLivro[] livros = new BibliLivro[100];
-        Emprestimos[] emprestimos = new Emprestimos[300]; // supondo que cada pessoa pode fazer 3 emprestimos
+        Emprestimos emprestimo = new Emprestimos();
         menu(); // mostrando o menu na tela
-         
+
         System.out.println("escolha uma opcao");
         int opc = scan.nextInt();
 
-        while (opc != 9) {
+        while (opc != 8) {
             switch (opc) {
                 case 1:
 
@@ -83,7 +82,6 @@ public class BibliMain {
                             idUsu = (i + 1);
                             usuarios[i] = new BibliUsuario(nomeUsu, sexoUsu, contatoUsu, idadeUsu, idUsu);
                             System.out.println("Nome: " + usuarios[i].getNome() + " foi cadastrado com sucesso!!" + "\n" + "Dê enter para prosseguir!");
-
                             
                             try{
                                 FileWriter arquivo = new FileWriter("./arquivo/biblioteca.txt", true);
@@ -98,9 +96,6 @@ public class BibliMain {
                             } catch (Exception e) {
                                 System.out.println("Erro ao salvar usuário! " + e);
                             }
-
-                            scan.nextLine();
-
                         }
 
                     } else {
@@ -129,7 +124,7 @@ public class BibliMain {
 
                     //pra vereficar se o numero n vai passar dessa bagaça 
                     if (cadLiv <= restLiv) {
-                        for (int i = qtdLiv; i < (cadLiv  + qtdLiv); i++) { //loop de cria
+                        for (int i = qtdLiv; i < cadLiv; i++) { //loop de cria
                             System.out.print("Titulo: ");
                             String titulo = scan.nextLine();
                             System.out.print("Autor: ");
@@ -144,7 +139,6 @@ public class BibliMain {
                             livros[i] = new BibliLivro(titulo, autor, anoPub, exemplares, codigo);                           
                             System.out.println("Livro: " + livros[i].getTitulo() + " cadastrado com sucesso!");
                             scan.nextLine(); // tava bugando e pulando o titulo
-
                             
                             try{
                                 FileWriter arquivo = new FileWriter("./arquivo/biblioteca.txt", true);
@@ -157,10 +151,6 @@ public class BibliMain {
                             } catch (Exception e){
                                 System.out.println("Não foi possível salvar este livro! " + e);
                             }
-
-                            System.out.println("De enter para continuar: ");
-                                    
-
                         }
 
                         
@@ -180,29 +170,22 @@ public class BibliMain {
                     scan.nextLine();
                     for (BibliUsuario usu : usuarios) {
                         if (usu != null) {
-                            usuEncontrado = true;
                             System.out.println(usu);
                             qtdUsuarios++;
                         }
 
                     }
-                    if(!usuEncontrado){
-                        System.out.println("Não há usuarios cadastrados!!");
-                    }
-                    soma = usuarios.length - qtdUsuarios;
+                    soma = 100 - qtdUsuarios;
                     System.out.println("Restam " + soma + " espaços para cadastro de usuarios");
                     scan.nextLine(); // aguardar o enter para prosseguir
                     break;
 
                 case 4:
-                    livroEncontrado = false;
                     System.out.println("================================================");
                     System.out.println("              LISTAGEM DE LIVROS               ");
                     System.out.println("================================================");
-                    qtdLiv = 0;
                     for (int i = 0; i < livros.length; i++) {
                         if (livros[i] != null) {
-                            qtdLiv++;
                             System.out.println("================================================");
                             System.out.println("Titulo: " + livros[i].getTitulo());
                             System.out.println("Autor: " + livros[i].getAutor());
@@ -210,136 +193,82 @@ public class BibliMain {
                             System.out.println("Exemplares do livro: " + livros[i].getExemplares());
                             System.out.println("Codigo: " + livros[i].getCodigo());
                             System.out.println("================================================");
-                            livroEncontrado = true;
+
                         }
                     }
-                    if(!livroEncontrado){
-                        System.out.println("Não há livros cadastrados!!");
-                    }
-                    restLiv = livros.length - qtdLiv;
                     if (restLiv > 0) {
                         System.out.println("Ainda restam " + restLiv + " livros para cadastrar!");
 
                     } else if (restLiv == 0) {
                         System.out.println("Esgotado!");
                     }
-                    System.out.println("Dê enter para continuar");
-                    scan.nextLine();
-                    scan.nextLine();
 
                     break;
                  // fazer um case antes desse para fazer o emprestimo, para depois saber se tem livro disponivelm ou nao
                     // provavelmente tera q fazer alteração nesse case
-                case 5:
-                    usuEncontrado = false;
-                    livroEncontrado = false;
+                    case 5:
                     System.out.println("========================================");
                     System.out.println("                EMPRESTIMO              ");
                     System.out.println("========================================");         
                     System.out.println("Deseja pegar um livro emprestado? ");   
-                    escolha = scan.next().toLowerCase();
-                    scan.nextLine();
-                    boolean possuiMaisDe3EmpAtivo = false;
-                    while("sim".equals(escolha)|| "s".equals(escolha)){
-                        System.out.println("Qual seu ID de usuario?");
-                        idUsu = scan.nextInt();
+                    escolha = scan.nextLine().toLowerCase();
+                    while("sim".equals(escolha)){
+                        System.out.println("Informe o codigo do livro que voce deseja pegar emprestado: ");
+                        codigo_e = scan.nextInt();
                         scan.nextLine();
-                        
-                        
-                        for(int i = 0; i< usuarios.length; i++){
-                            if(usuarios[i] != null){
-                                if(idUsu == usuarios[i].getId()){
-                                    usuEncontrado = true; // se encontrado vira true
+                        for (int i = 0; i < livros.length; i++){
+                            if (livros[i].getCodigo() == codigo_e){
+                                System.out.println("Informe a data de emprestimo: ");
+                                String emp = scan.nextLine();
+                                emprestimo.setDataEmpr(emp);
+                                System.out.println("Informe a data de devolucao: ");
+                                String dev = scan.nextLine();
+                                emprestimo.setDatadevol(dev);
+                                livEmp++;
+                                livros[i].emprestarExemplares(livEmp);
+                                if (livros[i].emprestarExemplares(livEmp) > 0){
+                                    System.out.println("O livro: " + livros[i].getTitulo()+ " possui: " + livros[i].emprestarExemplares(livEmp) + " copias!");
+
+                                } else {
+                                    System.out.print("Nao esta disponivel no momento - ESGOTADO! ");
+                                    scan.nextLine();
                                     break;
                                 }
                             }
                         }
-                        qtdEmprestimos = 0;
-                        for(int i = 0; i < emprestimos.length;i++){
-                            if(emprestimos[i] != null){
-                                qtdEmprestimos++;
-                            }
-                        }
                         
-                        if(usuarios[idUsu - 1].getQuantidadeEmprs() == 3){
-                            possuiMaisDe3EmpAtivo = true;
-                        }
-                        
-                        if(possuiMaisDe3EmpAtivo){
-                            System.out.println("Esse usuario já possui mais de 3 emprestimos ativos..., devolva pelo menos 1 livro antes de pegar outro");
-                        }else{
-                            if(usuEncontrado){
-                                System.out.println("Informe o codigo do livro que voce deseja pegar emprestado: ");
-                                codigo_e = scan.nextInt();
-                                scan.nextLine();
-                                for(int i = 0; i < livros.length; i++){
-                                    if(livros[i] != null && codigo_e == livros[i].getCodigo()){ // Verifica se o livro não é nulo e se o código bate
-                                        if(livros[i].getDisponivel()){
-                                            System.out.println("O livro ainda possui " + livros[i].getExemplares() + " exemplares");
-                                            System.out.println("Que dia o livro foi emprestado ou vai ser emprestado? ");
-                                            dataDeEmp = scan.nextLine();
-                                            for(int j = qtdEmprestimos; j < (qtdEmprestimos + 1); j++){
-                                                emprestimos[j] = new Emprestimos(livros[i], dataDeEmp, usuarios[idUsu - 1]);// instancia um objeto Emprestimos e anexa a data de emprestimo, o livro e o usuario
-                                                emprestimos[j].emprestar(); // usa o metodo da classe emprestimos que diminui a quantidade de exemplares
-                                                emprestimos[j].verificar(); // verifica a quantidade de exemplares, se for > 0 então ainda disponivel, se não disponivel = false
-                                                System.out.println(emprestimos[j]);
-                                            }
-                                            if(livros[i].getDisponivel() == true){
-                                                System.out.println("O livro ainda esta disponivel com mais " + livros[i].getExemplares());
-                                                scan.nextLine();
-                                            }else{
-                                                System.out.println("O livro esta sem exemplares disponiveis :" + livros[i].getExemplares());
-                                                scan.nextLine();
-                                            }
-                                            
-                                            
-
-                                        } else {
-                                            System.out.println("O livro não está disponível");
-                                        }
-
-                                        livroEncontrado = true; // Define que o livro foi encontrado
-                                        break; // Sai do loop
-                                    }
-                                }
-
-                                // Se o livro não foi encontrado após o loop, exibe a mensagem
-                                if(!livroEncontrado){
-                                    System.out.println("Livro não encontrado");
-                                }
-                            }else{
-                                System.out.println("Usuario não cadastrado!");
-                                scan.nextLine();
-                            }
-                        }
-                        
-                        System.out.println("Deseja realizar outro emprestimo?");   
-                        escolha = scan.nextLine().toLowerCase();    
+                        System.out.println("Deseja pegar outro livro emprestado? ");
+                        escolha= scan.nextLine().toLowerCase();
                     }
                     break;
+                        
+                        // for para verificar se o livro esta disponivel;
+                        
+                        // for para verificar se o usuario existe;
+                        
+                        // for para anexar o livro ao usuario;
+                        
+                        // mostrar mensagem se deu erro ou não no cod
+
+                    
                 case 6:
-                    livroEncontrado = false;
                     System.out.println("==========================================");
                     System.out.println("            LIVROS DISPONIVEIS            ");
                     System.out.println("==========================================");
-                    System.out.println("Deseja ver os livros disponiveis? [sim ou nao] ");
-                    escolha = scan.next().toLowerCase();
-                    scan.nextLine();
+                    System.out.println("Deseja ver os livros disponiveis? ");
+                    escolha = scan.nextLine().toLowerCase();
                     if ("sim".equals(escolha) || "s".equals(escolha)){
                         for(int i = 0; i < livros.length; i++){
-                            if(livros[i] != null){
-                                if(livros[i].getDisponivel()){ // se livro.disponivel for true e diferente de null
-                                    System.out.println(livros[i]);
-                                    livroEncontrado = true;
-                                }
+                            if(livros[i].getDisponivel() && livros[i] != null){ // se livro.disponivel for true e diferente de null
+                                System.out.println("CODIGO: " + livros[i].getCodigo());
+                                System.out.println("TITULO: " + livros[i].getTitulo());
+                                System.out.println("ANO DE PUBLICAÇÃO: " + livros[i].getAnoPub());
+                                System.out.println("AUTOR:: " + livros[i].getAutor());
+                                System.out.println("O livro " + livros[i].getTitulo() + " possui " + livros[i].getExemplares() + " copias disponiveis");
                             }
                         }
-                        if(!livroEncontrado){
-                            System.out.println("Não há livros disponiveis");
-                            scan.nextLine();
-                        }
                     }else{
-                        System.out.println("Então beleza po");
+                        System.out.println("então beleza po");
                         scan.nextLine();
                     }
                     break;
@@ -348,64 +277,7 @@ public class BibliMain {
                     break;
                     
                 case 8:
-                    livroEncontrado = false;
-                    System.out.println("=======================================");
-                    System.out.println("                DEVOLUCAO              ");
-                    System.out.println("=======================================");
-                    System.out.println("Deseja fazer uma devolucao? ");
-                    escolha = scan.next().toLowerCase();
-                    
-                        while("sim".equals(escolha) || "s".equals(escolha)){
-                            System.out.print("Informe seu ID: ");
-                            idUsu = scan.nextInt();
-                            int devolvido = 0;
-                            for (int i = 0; i < usuarios.length; i++){
-                                if(usuarios[i] != null && idUsu == usuarios[i].getId()){
-                                    usuEncontrado = true;
-                                        if(usuarios[i].getQuantidadeEmprs() > 0){
-                                            System.out.println("Deseja fazer devolucao de um livro? ");
-                                            escolha = scan.next().toLowerCase();
-                                            if("sim".equals(escolha) || "s".equals(escolha)){
-                                                for(int j = 0; j < emprestimos.length; j++){
-                                                   if(emprestimos[j] != null){
-                                                        if(emprestimos[j].getUsuario().getId() == idUsu){
-                                                            System.out.println(emprestimos[j].getLivro());
-
-                                                        } 
-                                                    }
-                                                }
-                                                System.out.println("Escolha o codigo do livro que voce deseja devolver: ");
-                                                codigo_e = scan.nextInt();
-                                                scan.nextLine();
-                                                for (int j= 0; j < emprestimos.length; j++){
-                                                    if(emprestimos[j].getUsuario().getId() == idUsu){
-                                                        if (emprestimos[j].getLivro().getCodigo() == codigo_e){
-                                                            livroEncontrado = true;
-                                                            emprestimos[j].setDataEmpr(null);  
-                                                            emprestimos[j].getLivro().aumentarLivros(1);
-                                                            emprestimos[j].verificar();
-                                                            emprestimos[j].diminuirQntEmp();
-                                                            emprestimos[j].setEmpAtivo();
-
-                                                        } 
-                                                    }
-                                                }
-                                                if (!livroEncontrado){
-                                                    System.out.println("O livro nao pertence a esse usuario! ");
-                                                }
-                                            }  
-
-                                        }
-                                }
-                            } if (!usuEncontrado){
-                                System.out.println("Usuario nao encontrado!");
-                            }                
-                                    
-
-                       System.out.println("Deseja fazer uma devolucao? ");
-                       escolha = scan.next().toLowerCase();
-                    }
-                   
+                    System.out.println("");
                     break;
                     
                 default:

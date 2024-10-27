@@ -74,8 +74,15 @@ public class BibliLivro {
     
     
     public int emprestarExemplares(int livEmp){
-        
         return this.exemplares -= livEmp;
+    }
+    public boolean verificarDisponibilidade(){
+        if(this.exemplares > 0){
+            this.disponivel = true;
+        }else{
+            this.disponivel = false;
+        }
+        return this.disponivel;
     }
     
       public int aumentarLivros(int livEmp){

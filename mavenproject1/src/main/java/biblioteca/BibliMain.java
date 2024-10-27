@@ -22,6 +22,7 @@ public class BibliMain {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        
 
         int soma = 0; //variavel para fazer o calculo se tem espaço no array
         int qtd = 0; // quantidade de usuarios
@@ -34,6 +35,7 @@ public class BibliMain {
         String escolha, anoPub; // escolha se sim ou não e ano de publicação dos livros
         int codigo_e; // verificar se o codigo escolhido é o mesmo do livro
         int codigo; // codigo do livro
+        int qtdEmprestimos;
         int exemplares; // qtd de exemplares
         String dataDeEmp; // dia de emprestimo
         boolean livroEncontrado = false; // verificador das listas
@@ -42,6 +44,7 @@ public class BibliMain {
         System.out.println("Bem vindo ao sistema de biblioteca!");
         BibliUsuario[] usuarios = new BibliUsuario[100];
         BibliLivro[] livros = new BibliLivro[100];
+        Emprestimos[] emprestimos = new Emprestimos[300]; // supondo que cada pessoa pode fazer 3 emprestimos
         menu(); // mostrando o menu na tela
          
         System.out.println("escolha uma opcao");
@@ -202,6 +205,7 @@ public class BibliMain {
                     System.out.println("Deseja pegar um livro emprestado? ");   
                     escolha = scan.next().toLowerCase();
                     scan.nextLine();
+                    boolean possuiMaisDe3EmpAtivo = false;
                     while("sim".equals(escolha)|| "s".equals(escolha)){
                         System.out.println("Qual seu ID de usuario?");
                         idUsu = scan.nextInt();
@@ -216,34 +220,63 @@ public class BibliMain {
                                 }
                             }
                         }
-
-                        if(usuEncontrado){
-                            System.out.println("Informe o codigo do livro que voce deseja pegar emprestado: ");
-                            codigo_e = scan.nextInt();
-                            scan.nextLine();
-                            for(int i = 0; i < livros.length; i++){
-                                if(livros[i] != null && codigo_e == livros[i].getCodigo()){ // Verifica se o livro não é nulo e se o código bate
-                                    if(livros[i].getDisponivel()){
-                                        System.out.println("Que dia o livro foi emprestado ou vai ser emprestado? ");
-                                        dataDeEmp = scan.nextLine();
-                                        usuarios[idUsu - 1].emprestimos = new Emprestimos(livros[i], dataDeEmp);
-                                        usuarios[idUsu - 1].emprestimos.emprestar();
-                                    } else {
-                                        System.out.println("O livro não está disponível");
-                                    }
-
-                                    livroEncontrado = true; // Define que o livro foi encontrado
-                                    break; // Sai do loop
-                                }
+                        qtdEmprestimos = 0;
+                        for(int i = 0; i < emprestimos.length;i++){
+                            if(emprestimos[i] != null){
+                                qtdEmprestimos++;
                             }
-
-                            // Se o livro não foi encontrado após o loop, exibe a mensagem
-                            if(!livroEncontrado){
-                                System.out.println("Livro não encontrado");
-                            }
+                        }
+                        
+                        if(usuarios[idUsu - 1].getQuantidadeEmprs() == 3){
+                            possuiMaisDe3EmpAtivo = true;
+                        }
+                        
+                        if(possuiMaisDe3EmpAtivo){
+                            System.out.println("Esse usuario já possui mais de 3 emprestimos ativos..., devolva pelo menos 1 livro antes de pegar outro");
                         }else{
-                            System.out.println("Usuario não cadastrado!");
-                            scan.nextLine();
+                            if(usuEncontrado){
+                                System.out.println("Informe o codigo do livro que voce deseja pegar emprestado: ");
+                                codigo_e = scan.nextInt();
+                                scan.nextLine();
+                                for(int i = 0; i < livros.length; i++){
+                                    if(livros[i] != null && codigo_e == livros[i].getCodigo()){ // Verifica se o livro não é nulo e se o código bate
+                                        if(livros[i].getDisponivel()){
+                                            System.out.println("O livro ainda possui " + livros[i].getExemplares() + " exemplares");
+                                            System.out.println("Que dia o livro foi emprestado ou vai ser emprestado? ");
+                                            dataDeEmp = scan.nextLine();
+                                            for(int j = qtdEmprestimos; j < (qtdEmprestimos + 1); j++){
+                                                emprestimos[j] = new Emprestimos(livros[i], dataDeEmp, usuarios[idUsu - 1]);// instancia um objeto Emprestimos e anexa a data de emprestimo, o livro e o usuario
+                                                emprestimos[j].emprestar(); // usa o metodo da classe emprestimos que diminui a quantidade de exemplares
+                                                emprestimos[j].verificar(); // verifica a quantidade de exemplares, se for > 0 então ainda disponivel, se não disponivel = false
+                                                System.out.println(emprestimos[j]);
+                                            }
+                                            if(livros[i].getDisponivel() == true){
+                                                System.out.println("O livro ainda esta disponivel com mais " + livros[i].getExemplares());
+                                                scan.nextLine();
+                                            }else{
+                                                System.out.println("O livro esta sem exemplares disponiveis :" + livros[i].getExemplares());
+                                                scan.nextLine();
+                                            }
+                                            
+                                            
+
+                                        } else {
+                                            System.out.println("O livro não está disponível");
+                                        }
+
+                                        livroEncontrado = true; // Define que o livro foi encontrado
+                                        break; // Sai do loop
+                                    }
+                                }
+
+                                // Se o livro não foi encontrado após o loop, exibe a mensagem
+                                if(!livroEncontrado){
+                                    System.out.println("Livro não encontrado");
+                                }
+                            }else{
+                                System.out.println("Usuario não cadastrado!");
+                                scan.nextLine();
+                            }
                         }
                         
                         System.out.println("Deseja realizar outro emprestimo?");   
@@ -287,45 +320,45 @@ public class BibliMain {
                     System.out.println("Deseja fazer uma devolucao? ");
                     escolha = scan.next().toLowerCase();
                     
-                    while("sim".equals(escolha) || "s".equals(escolha)){
-                        System.out.print("Informe seu ID: ");
-                        idUsu = scan.nextInt();
-                        scan.nextLine();
-                        int devolvido =0;
-                        for (int i = 0; i < usuarios.length; i++){
-                            if(usuarios[i] != null){
-                                if(idUsu == usuarios[i].getId()){
-                                    usuEncontrado = true;
-                                        if(usuarios[i].emprestimos.getDataEmpr() != null ){
-                                            System.out.println(livros);
-                                            System.out.println("--------------------------");
-                                            System.out.println("Deseja fazer a devolucao? ");
-                                            String quero = scan.next();
-                                            if ("sim".equals(quero)){
-                                                usuarios[i].emprestimos.setDataEmpr(null);
-                                                System.out.println("Livro devolvido com sucesso! \n"
-                                                        + "Obrigado por devolver! ");
-                                                devolvido++;
-                                                livros[i].aumentarLivros(devolvido);
-                                                       
-                                            } else {
-                                                System.out.println("Por favor, nao roube e nem estrague!");
-                                                break;
-                                            }
-                                            
-                                        } else {
-                                            System.out.println("Nao ha emprestimos nesse nome! ");
-                                        } 
-                                }   
-                            } 
-                            
-                        } if (!usuEncontrado){
-                            System.out.println("Nao existe um usuario com esse codigo");
-                        }
-                        System.out.println("Deseja fazer uma devolucao? ");
-                        escolha = scan.next().toLowerCase();
-                    }
-                    
+//                    while("sim".equals(escolha) || "s".equals(escolha)){
+//                        System.out.print("Informe seu ID: ");
+//                        idUsu = scan.nextInt();
+//                        scan.nextLine();
+//                        int devolvido =0;
+//                        for (int i = 0; i < usuarios.length; i++){
+//                            if(usuarios[i] != null){
+//                                if(idUsu == usuarios[i].getId()){
+//                                    usuEncontrado = true;
+//                                        if(usuarios[i].emprestimos.getDataEmpr() != null ){
+//                                            System.out.println(livros);
+//                                            System.out.println("--------------------------");
+//                                            System.out.println("Deseja fazer a devolucao? ");
+//                                            String quero = scan.next();
+//                                            if ("sim".equals(quero)){
+//                                                usuarios[i].emprestimos.setDataEmpr(null);
+//                                                System.out.println("Livro devolvido com sucesso! \n"
+//                                                        + "Obrigado por devolver! ");
+//                                                devolvido++;
+//                                                livros[i].aumentarLivros(devolvido);
+//                                                       
+//                                            } else {
+//                                                System.out.println("Por favor, nao roube e nem estrague!");
+//                                                break;
+//                                            }
+//                                            
+//                                        } else {
+//                                            System.out.println("Nao ha emprestimos nesse nome! ");
+//                                        } 
+//                                }   
+//                            } 
+//                            
+//                        } if (!usuEncontrado){
+//                            System.out.println("Nao existe um usuario com esse codigo");
+//                        }
+//                        System.out.println("Deseja fazer uma devolucao? ");
+//                        escolha = scan.next().toLowerCase();
+//                    }
+//                    
                     break;
                     
                 default:

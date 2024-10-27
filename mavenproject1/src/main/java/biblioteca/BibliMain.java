@@ -284,6 +284,19 @@ public class BibliMain {
                                                 emprestimos[j].verificar(); // verifica a quantidade de exemplares, se for > 0 então ainda disponivel, se não disponivel = false
                                                 System.out.println(emprestimos[j]);
                                             }
+                                            
+                                            try{
+                                                FileWriter arquivo = new FileWriter("/.arquivo/biblioteca.txt", true);
+                                                PrintWriter gravarArquivo = new PrintWriter(arquivo);
+                                                
+                                                gravarArquivo.println(emprestimos[i].toString());
+                                                gravarArquivo.close();
+                                                arquivo.close();
+                                                System.out.println("O seu emprestimo foi salvo e realizado com sucesso. Volte sempre!");
+                                                
+                                            } catch(Exception e) {
+                                                System.out.println("Opa! Parece que houve um erro ao tentar cadastrar este livro! " + e);
+                                            }
                                             if(livros[i].getDisponivel() == true){
                                                 System.out.println("O livro ainda esta disponivel com mais " + livros[i].getExemplares());
                                                 scan.nextLine();

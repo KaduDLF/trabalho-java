@@ -59,10 +59,13 @@ public class BibliLivro {
         return exemplares;
     }
     
-    public void setexEmplares(int exemplarDisponivel){
+    public void setExemplares(int exemplarDisponivel){
         this.exemplares = exemplarDisponivel;
     }
     
+    public void exemplares0(){
+        this.disponivel = false;
+    }
     
     
     public int getCodigo(){
@@ -73,14 +76,26 @@ public class BibliLivro {
     public int emprestarExemplares(int livEmp){
         return this.exemplares -= livEmp;
     }
+    public boolean verificarDisponibilidade(){
+        if(this.exemplares > 0){
+            this.disponivel = true;
+        }else{
+            this.disponivel = false;
+        }
+        return this.disponivel;
+    }
+    
+      public int aumentarLivros(int livEmp){
+            return this.exemplares += livEmp;      
+    }
     
     @Override
     public String toString() {
-        return "Título: " + this.titulo + 
-               ", Autor: " + this.autor + 
-               ", Ano de Publicacao:" + this.anoPub + 
-               ", Quantidade de Exemplares: " + this.exemplares + 
-               ", Codigo do livro: " + this.codigo; 
+        return "Título: " + this.titulo + "\n "
+               +", Autor: " + this.autor + "\n "
+               + ", Ano de Publicacao:" + this.anoPub + "\n"
+               + ", Quantidade de Exemplares: " + this.exemplares + "\n "
+               + ", Codigo do livro: " + this.codigo; 
                //Id Livro" + this.idLivro; // mexi nesse retorno, esse id é de usuarios
     }
     

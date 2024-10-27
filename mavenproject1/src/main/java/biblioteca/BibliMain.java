@@ -2,6 +2,8 @@ package biblioteca;
 
 import java.awt.BorderLayout;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 public class BibliMain {
 
@@ -80,6 +82,20 @@ public class BibliMain {
                             idUsu = (i + 1);
                             usuarios[i] = new BibliUsuario(nomeUsu, sexoUsu, contatoUsu, idadeUsu, idUsu);
                             System.out.println("Nome: " + usuarios[i].getNome() + " foi cadastrado com sucesso!!" + "\n" + "Dê enter para prosseguir!");
+                            
+                            try{
+                                FileWriter arquivo = new FileWriter("./arquivo/biblioteca.txt", true);
+                                PrintWriter gravarArquivo = new PrintWriter(arquivo);
+                                
+                                gravarArquivo.println(usuarios[i].toString());
+                                gravarArquivo.close();
+                                arquivo.close();
+                                System.out.println("Usuário foi salvo com sucesso!");
+                            
+                           
+                            } catch (Exception e) {
+                                System.out.println("Erro ao salvar usuário! " + e);
+                            }
                         }
 
                     } else {
@@ -123,6 +139,18 @@ public class BibliMain {
                             livros[i] = new BibliLivro(titulo, autor, anoPub, exemplares, codigo);                           
                             System.out.println("Livro: " + livros[i].getTitulo() + " cadastrado com sucesso!");
                             scan.nextLine(); // tava bugando e pulando o titulo
+                            
+                            try{
+                                FileWriter arquivo = new FileWriter("./arquivo/biblioteca.txt", true);
+                                PrintWriter gravarArquivo = new PrintWriter(arquivo);
+                                
+                                gravarArquivo.println(livros[i].toString());
+                                gravarArquivo.close();
+                                arquivo.close();
+                                System.out.println("Livro foi salvo com sucesso!");
+                            } catch (Exception e){
+                                System.out.println("Não foi possível salvar este livro! " + e);
+                            }
                         }
 
                         

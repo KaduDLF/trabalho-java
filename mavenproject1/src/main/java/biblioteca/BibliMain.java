@@ -13,7 +13,7 @@ public class BibliMain {
         System.out.println(" 4 - listar todos os livros");
         System.out.println(" 5 - Emprestimo ");
         System.out.println(" 6 - listar todos os livros disponiveis");
-        System.out.println(" 7 - Associar emprestimo");
+        System.out.println(" 7 - Gravar em arquivo");
         System.out.println(" 8 - devolver algum livro");
         System.out.println(" 9 - sair");
         System.out.println("-------------------------------------");
@@ -43,7 +43,7 @@ public class BibliMain {
         BibliUsuario[] usuarios = new BibliUsuario[100];
         BibliLivro[] livros = new BibliLivro[100];
         menu(); // mostrando o menu na tela
-
+         
         System.out.println("escolha uma opcao");
         int opc = scan.nextInt();
 
@@ -203,7 +203,7 @@ public class BibliMain {
                     escolha = scan.next().toLowerCase();
                     scan.nextLine();
                     while("sim".equals(escolha)|| "s".equals(escolha)){
-                        System.out.println("Qual seu codigo de usuario?");
+                        System.out.println("Qual seu ID de usuario?");
                         idUsu = scan.nextInt();
                         scan.nextLine();
                         
@@ -281,7 +281,51 @@ public class BibliMain {
                     break;
                     
                 case 8:
-                    System.out.println("");
+                    System.out.println("=======================================");
+                    System.out.println("                DEVOLUCAO              ");
+                    System.out.println("=======================================");
+                    System.out.println("Deseja fazer uma devolucao? ");
+                    escolha = scan.next().toLowerCase();
+                    
+                    while("sim".equals(escolha) || "s".equals(escolha)){
+                        System.out.print("Informe seu ID: ");
+                        idUsu = scan.nextInt();
+                        scan.nextLine();
+                        int devolvido =0;
+                        for (int i = 0; i < usuarios.length; i++){
+                            if(usuarios[i] != null){
+                                if(idUsu == usuarios[i].getId()){
+                                    usuEncontrado = true;
+                                        if(usuarios[i].emprestimos.getDataEmpr() != null ){
+                                            System.out.println(livros);
+                                            System.out.println("--------------------------");
+                                            System.out.println("Deseja fazer a devolucao? ");
+                                            String quero = scan.next();
+                                            if ("sim".equals(quero)){
+                                                usuarios[i].emprestimos.setDataEmpr(null);
+                                                System.out.println("Livro devolvido com sucesso! \n"
+                                                        + "Obrigado por devolver! ");
+                                                devolvido++;
+                                                livros[i].aumentarLivros(devolvido);
+                                                       
+                                            } else {
+                                                System.out.println("Por favor, nao roube e nem estrague!");
+                                                break;
+                                            }
+                                            
+                                        } else {
+                                            System.out.println("Nao ha emprestimos nesse nome! ");
+                                        } 
+                                }   
+                            } 
+                            
+                        } if (!usuEncontrado){
+                            System.out.println("Nao existe um usuario com esse codigo");
+                        }
+                        System.out.println("Deseja fazer uma devolucao? ");
+                        escolha = scan.next().toLowerCase();
+                    }
+                    
                     break;
                     
                 default:

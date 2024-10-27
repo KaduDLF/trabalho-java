@@ -78,6 +78,10 @@ public class BibliLivro {
         return this.exemplares -= livEmp;
     }
     
+      public int aumentarLivros(int livEmp){
+            return this.exemplares += livEmp;      
+    }
+    
     @Override
     public String toString() {
         return "Título: " + this.titulo + 

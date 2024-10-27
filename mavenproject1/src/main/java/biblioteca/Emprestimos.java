@@ -2,7 +2,7 @@ package biblioteca;
 
 public class Emprestimos {
     private BibliLivro livro;
-    private String dataEmpr;
+    private String dataEmpr = "";
     private String datadevol;
     
     Emprestimos(BibliLivro liv, String dataEmpr){
@@ -27,4 +27,12 @@ public class Emprestimos {
         this.datadevol = datadevol;
     }
     
+    public String getDataEmpr(){
+        return this.dataEmpr;
+    }
+    public void devolver(){
+        this.livro.aumentarLivros(1);
+    }
+    
+  
 }

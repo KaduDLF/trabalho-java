@@ -333,7 +333,7 @@ public class BibliMain {
                 case 6:
                     livroEncontrado = false;
                     System.out.println("==========================================");
-                    System.out.println("            LIVROS DISPONIVEIS            ");
+                    System.out.println("            LIVROS DISPONÍVEIS            ");
                     System.out.println("==========================================");
                     System.out.println("Deseja ver os livros disponiveis? [sim ou nao] ");
                     escolha = scan.next().toLowerCase();

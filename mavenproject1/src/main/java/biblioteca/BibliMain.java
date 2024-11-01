@@ -85,20 +85,6 @@ public class BibliMain {
                             System.out.println("Nome: " + usuarios[i].getNome() + " foi cadastrado com sucesso!!" + "\n" + "Dê enter para prosseguir!");
 
                             
-                            try{
-                                FileWriter arquivo = new FileWriter("./arquivo/biblioteca.txt", true);
-                                PrintWriter gravarArquivo = new PrintWriter(arquivo);
-                                
-                                gravarArquivo.println(usuarios[i].toString());
-                                gravarArquivo.close();
-                                arquivo.close();
-                                System.out.println("Usuário foi salvo com sucesso!");
-                            
-                           
-                            } catch (Exception e) {
-                                System.out.println("Erro ao salvar usuário! " + e);
-                            }
-
                             scan.nextLine();
 
                         }
@@ -146,17 +132,6 @@ public class BibliMain {
                             scan.nextLine(); 
 
                             
-                            try{
-                                FileWriter arquivo = new FileWriter("./arquivo/biblioteca.txt", true);
-                                PrintWriter gravarArquivo = new PrintWriter(arquivo);
-                                
-                                gravarArquivo.println(livros[i].toString());
-                                gravarArquivo.close();
-                                arquivo.close();
-                                System.out.println("Livro foi salvo com sucesso!");
-                            } catch (Exception e){
-                                System.out.println("Não foi possível salvar este livro! " + e);
-                            }
 
                             System.out.println("De enter para continuar: ");
                                     
@@ -280,18 +255,7 @@ public class BibliMain {
                                                 System.out.println(emprestimos[j]);
                                             }
                                             
-                                            try{
-                                                FileWriter arquivo = new FileWriter("/.arquivo/biblioteca.txt", true);
-                                                PrintWriter gravarArquivo = new PrintWriter(arquivo);
-                                                
-                                                gravarArquivo.println(emprestimos[i].toString());
-                                                gravarArquivo.close();
-                                                arquivo.close();
-                                                System.out.println("O seu emprestimo foi salvo e realizado com sucesso. Volte sempre!");
-                                                
-                                            } catch(Exception e) {
-                                                System.out.println("Opa! Parece que houve um erro ao tentar cadastrar este livro! " + e);
-                                            }
+                                            
                                             if(livros[i].getDisponivel() == true){
                                                 System.out.println("O livro ainda esta disponivel com mais " + livros[i].getExemplares());
                                                 scan.nextLine();
@@ -375,7 +339,7 @@ public class BibliMain {
                                             escolha = scan.next().toLowerCase();
                                             if("sim".equals(escolha) || "s".equals(escolha)){
                                                 for(int j = 0; j < emprestimos.length; j++){  //percorre o tamanho de emprestimo
-                                                   if(emprestimos[j] != null){
+                                                    if(emprestimos[j] != null){
                                                         if(emprestimos[j].getUsuario().getId() == idUsu){
                                                             System.out.println(emprestimos[j].getLivro());
 
@@ -386,16 +350,18 @@ public class BibliMain {
                                                 codigo_e = scan.nextInt();
                                                 scan.nextLine();
                                                 for (int j= 0; j < emprestimos.length; j++){
-                                                    if(emprestimos[j].getUsuario().getId() == idUsu){ //se o usuario informado for igual ao cadastrado
-                                                        if (emprestimos[j].getLivro().getCodigo() == codigo_e){ //e o codigo for igual a do livro
-                                                            livroEncontrado = true;
-                                                            emprestimos[j].setDataEmpr(null);  // vai zerar a data de emprestimo
-                                                            emprestimos[j].getLivro().aumentarLivros(1); // vai acrescentar esse exemplar aos disponiveis
-                                                            emprestimos[j].verificar(); //verifica a disponibilidade
-                                                            emprestimos[j].diminuirQntEmp(); //libera espaço para pegar emprestado 1 livro
-                                                            emprestimos[j].setEmpAtivo(); // Emprestimo ativo vira 0
-                                                           
-                                                        } 
+                                                    if(emprestimos[j] != null){
+                                                        if(emprestimos[j].getUsuario().getId() == idUsu){ //se o usuario informado for igual ao cadastrado
+                                                            if (emprestimos[j].getLivro().getCodigo() == codigo_e){ //e o codigo for igual a do livro
+                                                                livroEncontrado = true;
+                                                                emprestimos[j].setDataEmpr(null);  // vai zerar a data de emprestimo
+                                                                emprestimos[j].getLivro().aumentarLivros(1); // vai acrescentar esse exemplar aos disponiveis
+                                                                emprestimos[j].verificar(); //verifica a disponibilidade
+                                                                emprestimos[j].diminuirQntEmp(); //libera espaço para pegar emprestado 1 livro
+                                                                emprestimos[j].setEmpAtivo(); // Emprestimo ativo vira 0
+
+                                                            } 
+                                                        }
                                                     }
                                                 }
                                                 if (!livroEncontrado){

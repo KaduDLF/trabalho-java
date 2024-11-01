@@ -66,10 +66,10 @@ public class Emprestimos {
 
     @Override
     public String toString() {
-        return "usuario: " + this.usuario.getNome()+ "\n"
-                + " usuarios id: " + this.usuario.getId() + "\n"
-                + " livro: " + this.livro.getTitulo() + "\n"
-                + " livro id: " + this.livro.getCodigo();
+        return "usuario:" + this.usuario.getNome()+"\n"
+                + "usuarios id: " + this.usuario.getId() +"\n"
+                + "livro:" + this.livro.getTitulo() +"\n"
+                + "livro id:" + this.livro.getCodigo();
     }
     
     

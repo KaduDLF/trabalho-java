@@ -415,9 +415,9 @@ public class BibliMain {
                             }                
                                     
 
-                       System.out.println("Deseja fazer uma devolucao? ");
-                       escolha = scan.next().toLowerCase();
-                    }
+                            System.out.println("Deseja fazer uma devolucao? ");
+                            escolha = scan.next().toLowerCase();
+                        }
                    
                     break;
                     

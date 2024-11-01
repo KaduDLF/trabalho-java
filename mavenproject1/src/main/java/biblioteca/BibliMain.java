@@ -119,17 +119,17 @@ public class BibliMain {
                             qtdLiv++;
                         }
                     }
-                    //pra mostrar quantos livros ainda cabe nessa bagaça
+                    //fazer a conta de quantos livros ainda podem ser cadastrado
                     restLiv = livros.length - qtdLiv;
                     System.out.println("Sua biblioteca tem espaço para " + restLiv + " livros ");
 
                     System.out.println("Deseja cadastrar quantos livros? ");
-                    cadLiv = scan.nextInt(); // isso aqui ta mesma coisa
+                    cadLiv = scan.nextInt(); 
                     scan.nextLine();
 
-                    //pra vereficar se o numero n vai passar dessa bagaça 
+                    //Verificaçao se a quantidade de livros desejado é menor que disponivel
                     if (cadLiv <= restLiv) {
-                        for (int i = qtdLiv; i < (cadLiv  + qtdLiv); i++) { //loop de cria
+                        for (int i = qtdLiv; i < (cadLiv  + qtdLiv); i++) { 
                             System.out.print("Titulo: ");
                             String titulo = scan.nextLine();
                             System.out.print("Autor: ");
@@ -142,8 +142,8 @@ public class BibliMain {
                             codigo = (i + 1);
                             
                             livros[i] = new BibliLivro(titulo, autor, anoPub, exemplares, codigo);                           
-                            System.out.println("Livro: " + livros[i].getTitulo() + " cadastrado com sucesso!");
-                            scan.nextLine(); // tava bugando e pulando o titulo
+                            System.out.println("Livro: " + livros[i].getTitulo() + ", foi cadastrado com sucesso!");
+                            scan.nextLine(); 
 
                             
                             try{
@@ -204,11 +204,7 @@ public class BibliMain {
                         if (livros[i] != null) {
                             qtdLiv++;
                             System.out.println("================================================");
-                            System.out.println("Titulo: " + livros[i].getTitulo());
-                            System.out.println("Autor: " + livros[i].getAutor());
-                            System.out.println("Ano de publicacao: " + livros[i].getAnoPub());
-                            System.out.println("Exemplares do livro: " + livros[i].getExemplares());
-                            System.out.println("Codigo: " + livros[i].getCodigo());
+                            System.out.println(livros[i]); // As informaçoes estao tudo dentro do ToString de livros
                             System.out.println("================================================");
                             livroEncontrado = true;
                         }
@@ -228,8 +224,7 @@ public class BibliMain {
                     scan.nextLine();
 
                     break;
-                 // fazer um case antes desse para fazer o emprestimo, para depois saber se tem livro disponivelm ou nao
-                    // provavelmente tera q fazer alteração nesse case
+                    
                 case 5:
                     usuEncontrado = false;
                     livroEncontrado = false;
@@ -372,14 +367,14 @@ public class BibliMain {
                             System.out.print("Informe seu ID: ");
                             idUsu = scan.nextInt();
                             int devolvido = 0;
-                            for (int i = 0; i < usuarios.length; i++){
-                                if(usuarios[i] != null && idUsu == usuarios[i].getId()){
+                            for (int i = 0; i < usuarios.length; i++){ //quantidade total de usuarios
+                                if(usuarios[i] != null && idUsu == usuarios[i].getId()){ //verifica se a posiçao de usuario nao é nula e se é igual
                                     usuEncontrado = true;
-                                        if(usuarios[i].getQuantidadeEmprs() > 0){
+                                        if(usuarios[i].getQuantidadeEmprs() > 0){ // se for a quantidae de emprestimo deste usuario é maior que 0
                                             System.out.println("Deseja fazer devolucao de um livro? ");
                                             escolha = scan.next().toLowerCase();
                                             if("sim".equals(escolha) || "s".equals(escolha)){
-                                                for(int j = 0; j < emprestimos.length; j++){
+                                                for(int j = 0; j < emprestimos.length; j++){  //percorre o tamanho de emprestimo
                                                    if(emprestimos[j] != null){
                                                         if(emprestimos[j].getUsuario().getId() == idUsu){
                                                             System.out.println(emprestimos[j].getLivro());
@@ -391,15 +386,15 @@ public class BibliMain {
                                                 codigo_e = scan.nextInt();
                                                 scan.nextLine();
                                                 for (int j= 0; j < emprestimos.length; j++){
-                                                    if(emprestimos[j].getUsuario().getId() == idUsu){
-                                                        if (emprestimos[j].getLivro().getCodigo() == codigo_e){
+                                                    if(emprestimos[j].getUsuario().getId() == idUsu){ //se o usuario informado for igual ao cadastrado
+                                                        if (emprestimos[j].getLivro().getCodigo() == codigo_e){ //e o codigo for igual a do livro
                                                             livroEncontrado = true;
-                                                            emprestimos[j].setDataEmpr(null);  
-                                                            emprestimos[j].getLivro().aumentarLivros(1);
-                                                            emprestimos[j].verificar();
-                                                            emprestimos[j].diminuirQntEmp();
-                                                            emprestimos[j].setEmpAtivo();
-
+                                                            emprestimos[j].setDataEmpr(null);  // vai zerar a data de emprestimo
+                                                            emprestimos[j].getLivro().aumentarLivros(1); // vai acrescentar esse exemplar aos disponiveis
+                                                            emprestimos[j].verificar(); //verifica a disponibilidade
+                                                            emprestimos[j].diminuirQntEmp(); //libera espaço para pegar emprestado 1 livro
+                                                            emprestimos[j].setEmpAtivo(); // Emprestimo ativo vira 0
+                                                           
                                                         } 
                                                     }
                                                 }

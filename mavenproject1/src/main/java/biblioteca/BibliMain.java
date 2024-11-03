@@ -84,7 +84,7 @@ public class BibliMain {
                             scan.nextLine();
                             idUsu = (i + 1);
                             usuarios[i] = new BibliUsuario(nomeUsu, sexoUsu, contatoUsu, idadeUsu, idUsu);
-                            System.out.println("Nome: " + usuarios[i].getNome() + " foi cadastrado com sucesso!!" + "\n" + "Dê enter para prosseguir!");
+                            System.out.println("Nome: " + usuarios[i].getNome() + " foi cadastrado com sucesso!! id: " + usuarios[i].getId() + "\n" + "Dê enter para prosseguir!");
 
                             
                             scan.nextLine();
@@ -130,7 +130,7 @@ public class BibliMain {
                             codigo = (i + 1);
                             
                             livros[i] = new BibliLivro(titulo, autor, anoPub, exemplares, codigo);                           
-                            System.out.println("Livro: " + livros[i].getTitulo() + ", foi cadastrado com sucesso!");
+                            System.out.println("Livro: " + livros[i].getTitulo() + ", foi cadastrado com sucesso! id: " + livros[i].getCodigo() );
                             scan.nextLine(); 
 
                             

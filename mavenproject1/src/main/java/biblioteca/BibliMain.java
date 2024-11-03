@@ -17,7 +17,8 @@ public class BibliMain {
         System.out.println(" 6 - listar todos os livros disponiveis");
         System.out.println(" 7 - Gravar em arquivo");
         System.out.println(" 8 - devolver algum livro");
-        System.out.println(" 9 - sair");
+        System.out.println(" 9 - listar todos os livros");   
+        System.out.println(" 10 - sair");
         System.out.println("-------------------------------------");
 
     } // função pra mostrar o menu
@@ -52,7 +53,7 @@ public class BibliMain {
         System.out.println("escolha uma opcao");
         int opc = scan.nextInt();
 
-        while (opc != 9) {
+        while (opc != 10) {
             switch (opc) {
                 case 1:
 
@@ -380,6 +381,8 @@ public class BibliMain {
                             escolha = scan.next().toLowerCase();
                         }
                    
+                    break;
+                case 9:
                     break;
                     
                 default:

@@ -43,6 +43,7 @@ public class BibliMain {
         String dataDeEmp; // dia de emprestimo
         boolean livroEncontrado = false; // verificador das listas
         boolean usuEncontrado = false; // verificador das listas
+        boolean emprestEncontrado = false; // verificador das listas
         
         System.out.println("Bem vindo ao sistema de biblioteca!");
         BibliUsuario[] usuarios = new BibliUsuario[100];
@@ -383,6 +384,7 @@ public class BibliMain {
                    
                     break;
                 case 9:
+                    emprestEncontrado = false;
                     System.out.println("=======================================");
                     System.out.println("         LISTAGEM DE EMPRESTIMOS       ");
                     System.out.println("=======================================");
@@ -393,15 +395,24 @@ public class BibliMain {
                         for(int i = 0 ;i < emprestimos.length; i++){
                             if(emprestimos[i] != null){
                                 if(emprestimos[i].getEmprestAtivo()){ // se emprestimo[i] estiver ativo
+                                    emprestEncontrado = true;
                                     System.out.println(emprestimos[i]); // mostrando na tela o toString de "emprestimos"
                                     System.out.println("======================");
                                 }
                             }
                         }
-                        System.out.println(" "); // espaço antes
-                        System.out.println("Emprestimos listados!!");
-                        scan.nextLine(); // aguardar enter para prosseguir
-                        scan.nextLine();
+                        if(emprestEncontrado){
+                            System.out.println(" "); // espaço antes
+                            System.out.println("Emprestimos listados!!");
+                            scan.nextLine(); // aguardar enter para prosseguir
+                            scan.nextLine();
+                        }else{
+                            System.out.println(" "); // espaço antes
+                            System.out.println("não há emprestimos ativos");
+                            scan.nextLine(); // aguardar enter para prosseguir
+                            scan.nextLine();
+                        }
+                            
                         
                     }                        
                     break;

@@ -17,7 +17,7 @@ public class BibliMain {
         System.out.println(" 6 - listar todos os livros disponiveis");
         System.out.println(" 7 - Gravar em arquivo");
         System.out.println(" 8 - devolver algum livro");
-        System.out.println(" 9 - listar todos os livros");   
+        System.out.println(" 9 - listar todos os emprestimos");   
         System.out.println(" 10 - sair");
         System.out.println("-------------------------------------");
 
@@ -383,6 +383,27 @@ public class BibliMain {
                    
                     break;
                 case 9:
+                    System.out.println("=======================================");
+                    System.out.println("         LISTAGEM DE EMPRESTIMOS       ");
+                    System.out.println("=======================================");
+                    System.out.println("Deseja fazer listar os emprestimos ativos?");
+                    escolha = scan.next().toLowerCase();
+                    
+                    if("sim".equals(escolha) || "s".equals(escolha)){
+                        for(int i = 0 ;i < emprestimos.length; i++){
+                            if(emprestimos[i] != null){
+                                if(emprestimos[i].getEmprestAtivo()){ // se emprestimo[i] estiver ativo
+                                    System.out.println(emprestimos[i]); // mostrando na tela o toString de "emprestimos"
+                                    System.out.println("======================");
+                                }
+                            }
+                        }
+                        System.out.println(" "); // espaço antes
+                        System.out.println("Emprestimos listados!!");
+                        scan.nextLine(); // aguardar enter para prosseguir
+                        scan.nextLine();
+                        
+                    }                        
                     break;
                     
                 default:

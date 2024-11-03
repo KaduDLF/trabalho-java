@@ -150,6 +150,7 @@ public class BibliMain {
                     break;
 
                 case 3:
+                    usuEncontrado = false;
                     qtdUsuarios = 0;
                     System.out.println("=======================================");
                     System.out.println("         LISTAGEM DE USUARIOS          ");

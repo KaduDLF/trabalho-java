@@ -44,6 +44,7 @@ public class BibliMain {
         boolean livroEncontrado = false; // verificador das listas
         boolean usuEncontrado = false; // verificador das listas
         boolean emprestEncontrado = false; // verificador das listas
+        boolean codigoIgual = false; // verificador das listas
         
         System.out.println("Bem vindo ao sistema de biblioteca!");
         BibliUsuario[] usuarios = new BibliUsuario[100];
@@ -324,8 +325,7 @@ public class BibliMain {
                     
                 case 8:
                     livroEncontrado = false;
-                    int devolvido = 0;
-                    boolean codigoIgual = false;
+                    codigoIgual = false;
                     usuEncontrado = false;
                     System.out.println("=======================================");
                     System.out.println("                DEVOLUCAO              ");
@@ -339,10 +339,10 @@ public class BibliMain {
                             scan.nextLine();
                             for (int i = 0; i < usuarios.length; i++){
                                 if (usuarios[i] != null && usuarios[i].getId() == idUsu){
-                                     usuEncontrado = true;
+                                    usuEncontrado = true;
                                     if (usuarios[i].getQuantidadeEmprs() > 0){
                                         for (int j = 0; j < emprestimos.length; j++){
-                                            if (emprestimos[j] != null){
+                                            if (emprestimos[j] != null){ // listagem de livros que o usuario possui emprestado
                                                 if (emprestimos[j].getUsuario().getId() == idUsu){
                                                     System.out.println("Titulo: "+ emprestimos[j].getLivro().getTitulo());
                                                     System.out.println("Id: " + emprestimos[j].getLivro().getCodigo());
@@ -357,6 +357,8 @@ public class BibliMain {
                                             if (livros[k] != null){
                                                 if (livros[k].getCodigo() == codigo_e){
                                                     livroEncontrado = true;
+                                                    System.out.println("livro foi encontrado no sistema!");
+                                                    break;
                                                 }
                                             }
                                         } if (livroEncontrado){
@@ -364,19 +366,22 @@ public class BibliMain {
                                                 if(emprestimos[j].getUsuario().getId() == idUsu){
                                                     if(emprestimos[j].getLivro().getCodigo() == codigo_e){
                                                         codigoIgual = true;
+                                                        System.out.println("o livro pertence ao usuario!");
+                                                        break;
                                                     }
                                                 }
                                             }
                                             if (codigoIgual){
                                                 for (int j = 0; j < emprestimos.length; j++){
                                                     if (emprestimos[j] != null){
-                                                        if(emprestimos[j].getUsuario().getId()==idUsu){
+                                                        if(emprestimos[j].getUsuario().getId() == idUsu){
                                                             if(emprestimos[j].getLivro().getCodigo() == codigo_e){
                                                                emprestimos[j].setDataEmpr(null);  // vai zerar a data de emprestimo
                                                                 emprestimos[j].getLivro().aumentarLivros(1); // vai acrescentar esse exemplar aos disponiveis
                                                                 emprestimos[j].verificar(); //verifica a disponibilidade
                                                                 emprestimos[j].diminuirQntEmp(); //libera espaço para pegar emprestado 1 livro
                                                                 emprestimos[j].setEmpAtivo(); // Emprestimo ativo vira 0 
+                                                                System.out.println("livro devolvido com sucesso");
                                                             }
                                                         }
                                                     }
@@ -391,7 +396,12 @@ public class BibliMain {
                                            System.out.println("Esse codigo de livro nao existe!! ");
                                             
                                         }
+                                    }else{
+                                        System.out.println("usuario não possui emprestimos ativos!!");
                                     }
+                                }
+                                if(!usuEncontrado){
+                                    System.out.println("Usuario não foi encontrado!");
                                 }
                             }         
                             System.out.println("Deseja fazer uma devolucao? ");

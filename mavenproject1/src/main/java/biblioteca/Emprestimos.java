@@ -35,7 +35,7 @@ public class Emprestimos {
     
     
     public void emprestar(){
-        this.livro.emprestarExemplares(1);
+        this.livro.emprestarExemplares(1); 
     }
     
     public void verificar(){

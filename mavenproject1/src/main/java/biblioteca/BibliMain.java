@@ -256,9 +256,9 @@ public class BibliMain {
                                             }
                                         }
                                     }
-                                }
+                                } // logica para analisar se o usuario possui apenas 1 exemplar de cada livro
                                 if(livrofoiEncontrado){
-                                    System.out.println("Esse usuario ja possui esse livro!");
+                                    System.out.println("Esse usuario ja possui esse livro!"); 
                                 }else{
                                     for(int i = 0; i < livros.length; i++){
                                         if(livros[i] != null && codigo_e == livros[i].getCodigo()){ // Verifica se o livro não é nulo e se o código bate
@@ -334,8 +334,11 @@ public class BibliMain {
                         scan.nextLine();
                     }
                     break;
+                    
                 case 7:
+                    System.out.println("================================");
                     System.out.println("Deseja gravar tudo em 1 arquivo?");
+                    System.out.println("================================");
                     escolha = scan.next().toLowerCase();
                     if("sim".equals(escolha) || "s".equals(escolha)){
                         System.out.println("Gravando informações em arquivo...");
@@ -404,6 +407,8 @@ public class BibliMain {
                                                 }   
                                             }
                                         }
+                                         // ira perguntar o codigo e apos informar, o for verificara se os codigos cadastrado é igual ao informado
+                                         //se for diferente de vazio e igual, vai marcar como encontrado e verá se possuir emprestimos, caso exista emprestimo listara
                                         System.out.println("Informe o codigo do livro que voce deseja devolver: ");
                                         codigo_e = scan.nextInt();
                                         scan.nextLine();
@@ -415,6 +420,7 @@ public class BibliMain {
                                                     break;
                                                 }
                                             }
+                                            // apos perguntar o codigo do livro, o sistema irar percorrer os cadastro e se existir, vai marcar como livro encontrado
                                         } if (livroEncontrado){
                                             for (int j = 0; j < emprestimos.length; j++){
                                                 if(emprestimos[j].getUsuario().getId() == idUsu){
@@ -425,6 +431,7 @@ public class BibliMain {
                                                     }
                                                 }
                                             }
+                                            // caso encontre o livro, o sistema ira verificar se o codigo do usuario e do livro é do usuario especifico
                                             if (codigoIgual){
                                                 for (int j = 0; j < emprestimos.length; j++){
                                                     if (emprestimos[j] != null){
@@ -440,7 +447,7 @@ public class BibliMain {
                                                         }
                                                     }
                                                 }
-                                                
+                                                // caso for true, o sistema de devolução é feito com sucesso! 
                                             } else {
                                                 System.out.println("O codigo informado nao pertence ao que o usuario pegou!");
                                             }
@@ -457,7 +464,8 @@ public class BibliMain {
                                 if(!usuEncontrado){
                                     System.out.println("Usuario não foi encontrado!");
                                 }
-                            }         
+                            }    
+                            // a devolução foi feito tudo dentro do for, pois necessita de diversos motivos para ocorrer
                             System.out.println("Deseja fazer uma devolucao? ");
                             escolha = scan.next().toLowerCase();
                                 

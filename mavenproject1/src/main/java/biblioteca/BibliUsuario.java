@@ -29,11 +29,11 @@ public class BibliUsuario {
 
     public void setQuantidadeEmprs(int quantidadeEmprs) {
         this.quantidadeEmprs += quantidadeEmprs;
-    }
+    } // adicionar quando houver devolução 
     
     public void diminuirEmp(int quantidadeEmprs) {
         this.quantidadeEmprs -= quantidadeEmprs;
-    }
+    } // subtrair quando houver emprestimos 
     
     
     int getId(){

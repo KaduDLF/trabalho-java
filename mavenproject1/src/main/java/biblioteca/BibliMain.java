@@ -335,7 +335,46 @@ public class BibliMain {
                     }
                     break;
                 case 7:
-                    System.out.println("");
+                    System.out.println("Deseja gravar tudo em 1 arquivo?");
+                    escolha = scan.next().toLowerCase();
+                    if("sim".equals(escolha) || "s".equals(escolha)){
+                        System.out.println("Gravando informações em arquivo...");
+                        try {
+                            FileWriter fileWriter = new FileWriter("biblioteca_dados.txt");
+                            PrintWriter printWriter = new PrintWriter(fileWriter);
+
+                            // Gravação dos usuários
+                            printWriter.println("===== Usuários Cadastrados =====");
+                            for (BibliUsuario usuario : usuarios) {
+                                if (usuario != null) {
+                                    printWriter.println(usuario);
+                                }
+                            }
+
+                            // Gravação dos livros
+                            printWriter.println("\n===== Livros Cadastrados =====");
+                            for (BibliLivro livro : livros) {
+                                if (livro != null) {
+                                    printWriter.println(livro);
+                                }
+                            }
+                            
+                            // Gravação dos emprestimos
+                            printWriter.println("\n===== Emprestimos Ativos =====");
+                            for (Emprestimos emprest : emprestimos) {
+                                if (emprest != null) {
+                                    printWriter.println(emprest);
+                                }
+                            }
+
+                            printWriter.close();
+                            fileWriter.close();
+                            System.out.println("Dados gravados com sucesso em biblioteca_dados.txt!");
+                        } catch (Exception e) {
+                            System.out.println("Erro ao gravar os dados: " + e.getMessage());
+                        }
+                    }
+
                     break;
                     
                 case 8:

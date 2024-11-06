@@ -20,12 +20,6 @@ public class BibliLivro {
         this.disponivel = true;
     }
 
-    //public BibliExemplares[] getExemplar() {
-        //this.exemplar = new BibliExemplares[3];
-        //return exemplar;
-    //}
-    // Fazer uma analise coerente sobre esse valor declarado dentro dos colchetes.
-    //se a quantidade for maior que 3, vai acontecer oq??  felipe fez esse comentario
     
     public boolean getDisponivel(){
         return this.disponivel;

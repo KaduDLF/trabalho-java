@@ -29,25 +29,17 @@ public class BibliLivro {
         return titulo;
     }
     
-    //public void setTitulo(String titulo){
-    //    this.titulo = titulo;
-    //}
+
    
     public String getAutor(){
        return autor;
     }
     
-    //public void setAutor(String autor){
-    //    this.autor = autor;
-    //}
-    
+
     public String getAnoPub(){
         return anoPub;
     }
     
-   // public void setAnoPub(int anoPublicacao){
-   //     this.anoPub = anoPublicacao;
-    //}
     
     public int getExemplares(){ 
         return exemplares;
@@ -92,7 +84,7 @@ public class BibliLivro {
                + "Codigo do livro: " + this.codigo + "\n "
                 + "============="; 
         
-               //Id Livro" + this.idLivro; // mexi nesse retorno, esse id é de usuarios
+             
     }
     
 }

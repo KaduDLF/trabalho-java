@@ -352,7 +352,7 @@ public class BibliMain {
                     if ("sim".equals(escolha) || "s".equals(escolha)) {
                         System.out.println("Gravando informações em arquivo...");
                         try {
-                            FileWriter fileWriter = new FileWriter("biblioteca_dados.txt");
+                            FileWriter fileWriter = new FileWriter("biblioteca_dados.txt", true);
                             PrintWriter printWriter = new PrintWriter(fileWriter);
 
                             // Gravação dos usuários

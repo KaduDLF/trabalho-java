@@ -44,6 +44,7 @@ public class BibliMain {
         boolean usuEncontrado = false; // verificador das listas
         boolean emprestEncontrado = false; // verificador das listas
         boolean codigoIgual = false; // verificador das listas
+        String email;
 
         System.out.println("Bem vindo ao sistema de biblioteca!");
         BibliUsuario[] usuarios = new BibliUsuario[100];
@@ -81,9 +82,11 @@ public class BibliMain {
                                 contatoUsu = scan.nextLine();
                                 System.out.println("Digite a idade do usuário");
                                 idadeUsu = scan.nextInt();
+                                System.out.println("Informe seu email: ");
+                                email = scan.nextLine();
                                 scan.nextLine();
                                 idUsu = (i + 1);
-                                usuarios[i] = new BibliUsuario(nomeUsu, sexoUsu, contatoUsu, idadeUsu, idUsu);
+                                usuarios[i] = new BibliUsuario(nomeUsu, sexoUsu, contatoUsu, idadeUsu, idUsu, email);
                                 System.out.println("Nome: " + usuarios[i].getNome() + " foi cadastrado com sucesso!! id: " + usuarios[i].getId() + "\n" + "Dê enter para prosseguir!");
 
                                 scan.nextLine();

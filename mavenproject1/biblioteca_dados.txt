@@ -23,3 +23,28 @@ usuario:Felipe
 usuarios id: 2
 livro:O grande autobot
 livro id:2
+===== Usuários Cadastrados =====
+nome: felipe id: 1
+Email: felipe@gomes.com
+nome: karlos id: 2
+Email: karlinhoteves@gmail.com
+
+===== Livros Cadastrados =====
+Título: mafioso
+ Autor: felipe
+ Ano de Publicacao:2090
+Quantidade de Exemplares: 4
+ Codigo do livro: 1
+ =============
+Título: kimono
+ Autor: jiujitsu
+ Ano de Publicacao:2019
+Quantidade de Exemplares: 5
+ Codigo do livro: 2
+ =============
+
+===== Emprestimos Ativos =====
+usuario:felipe
+usuarios id: 1
+livro:mafioso
+livro id:1

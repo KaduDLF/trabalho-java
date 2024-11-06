@@ -82,6 +82,12 @@ public class BibliMain {
                                 contatoUsu = scan.nextLine();
                                 System.out.println("Digite a idade do usuário");
                                 idadeUsu = scan.nextInt();
+                                if(idadeUsu > 100 || idadeUsu < 10){
+                                    System.out.println("Essa idade é invalida!");
+                                    System.out.println("faça o cadastro novamente!");
+                                    break;
+                                }
+                                scan.nextLine();
                                 System.out.println("Informe seu email: ");
                                 email = scan.nextLine();
                                 scan.nextLine();
@@ -145,13 +151,11 @@ public class BibliMain {
                                     livros[i] = new  BibliLivro(titulo, autor, anoPub, exemplares, codigo, precoLiv);
                                     System.out.println("Livro: " + livros[i].getTitulo() + ", foi cadastrado com sucesso! id: " + livros[i].getCodigo());
                                     System.out.println("Voce tera que pagar R$:" + precoLiv);
-                                    System.out.println("BOA LEITURA!");
-                                    System.out.println("De enter para voltar para o menu");
+                                    System.out.println("De enter para continuar");
                                     scan.nextLine();
                                 } else {
                                     livros[i] = new BibliLivro(titulo, autor, anoPub, exemplares, codigo);
                                     System.out.println("Livro: " + livros[i].getTitulo() + ", foi cadastrado com sucesso! id: " + livros[i].getCodigo());
-                                    System.out.println("BOA LEITURA!");
                                     System.out.println("De enter para continuar: ");
                                     scan.nextLine();
                                 }
@@ -486,7 +490,7 @@ public class BibliMain {
                             }
                             // a devolução foi feito tudo dentro do for, pois necessita de diversos motivos para ocorrer
 
-                            System.out.println("Deseja fazer uma devolucao? ");
+                            System.out.println("Deseja fazer uma outra devolucao? ");
                             escolha = scan.next().toLowerCase();
                         }
                     } catch (Exception e) {

@@ -7,7 +7,7 @@ public class BibliUsuario {
     private String contato;
     private int idade;
     private int id;
-    public String email;
+    private String email;
     //public Emprestimos emprestimos; // vai puxar o emprestimo dentro de main para saber quem esta com o livro!
     private int quantidadeEmprs;
     
@@ -44,7 +44,7 @@ public class BibliUsuario {
 
     @Override
     public String toString() {
-        return "nome: " + this.nome + " id: " + this.id + "\n Email: " + this.email; 
+        return "nome: " + this.nome + " id: " + this.id + "\nEmail: " + this.email;
     }   
         
      

@@ -28,6 +28,7 @@ public class BibliLivro {
         this.exemplares = exemplares;
         this.codigo = codigo;
         this.preco = preco;
+        this.disponivel = true;
         
     }
     

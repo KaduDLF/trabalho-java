@@ -493,7 +493,8 @@ public class BibliMain {
                         System.out.println("Ocorreu um erro ao processar a devolução: " + e.getMessage());
                         scan.nextLine(); // limpa a entrada para evitar looping infinito em caso de erro
                     }
-
+                    break; 
+                    
                 case 9:
                     emprestEncontrado = false;
                     System.out.println("=======================================");

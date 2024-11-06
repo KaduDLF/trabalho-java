@@ -45,7 +45,7 @@ public class BibliMain {
         boolean emprestEncontrado = false; // verificador das listas
         boolean codigoIgual = false; // verificador das listas
         String email;
-
+        double precoLiv; //saber o preço do livro;
         System.out.println("Bem vindo ao sistema de biblioteca!");
         BibliUsuario[] usuarios = new BibliUsuario[100];
         BibliLivro[] livros = new BibliLivro[100];
@@ -136,11 +136,25 @@ public class BibliMain {
                                 exemplares = scan.nextInt();
                                 scan.nextLine();
                                 codigo = (i + 1);
-
-                                livros[i] = new BibliLivro(titulo, autor, anoPub, exemplares, codigo);
-                                System.out.println("Livro: " + livros[i].getTitulo() + ", foi cadastrado com sucesso! id: " + livros[i].getCodigo());
-                                System.out.println("De enter para continuar: ");
-                                scan.nextLine();
+                                System.out.println("Esse livro possui preco? ");
+                                String resposta = scan.nextLine();
+                                if ("sim".equals(resposta) || "s".equals(resposta)){
+                                    System.out.println("Quanto custa o livro? ");
+                                    precoLiv = scan.nextDouble();
+                                    scan.nextLine();
+                                    livros[i] = new  BibliLivro(titulo, autor, anoPub, exemplares, codigo, precoLiv);
+                                    System.out.println("Livro: " + livros[i].getTitulo() + ", foi cadastrado com sucesso! id: " + livros[i].getCodigo());
+                                    System.out.println("Voce tera que pagar R$:" + precoLiv);
+                                    System.out.println("BOA LEITURA!");
+                                    System.out.println("De enter para voltar para o menu");
+                                    scan.nextLine();
+                                } else {
+                                    livros[i] = new BibliLivro(titulo, autor, anoPub, exemplares, codigo);
+                                    System.out.println("Livro: " + livros[i].getTitulo() + ", foi cadastrado com sucesso! id: " + livros[i].getCodigo());
+                                    System.out.println("BOA LEITURA!");
+                                    System.out.println("De enter para continuar: ");
+                                    scan.nextLine();
+                                }
                             }
 
                         } else {
@@ -279,6 +293,7 @@ public class BibliMain {
                                                         emprestimos[j].emprestar(); // diminui a quantidade de exemplares
                                                         emprestimos[j].verificar(); // verifica disponibilidade
                                                         System.out.println(emprestimos[j]);
+                                                        
                                                     }
 
                                                     if (livros[i].getDisponivel()) {

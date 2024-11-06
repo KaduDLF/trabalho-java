@@ -14,11 +14,6 @@ public class Emprestimos {
         this.emprestAtivo = true;
         this.usuario.setQuantidadeEmprs(1);
     }
-    Emprestimos(BibliLivro liv, String dataEmpr, String dataDev){
-         this.livro = liv;
-         this.dataEmpr = dataEmpr;
-         this.datadevol = dataDev;
-    }
 
     public BibliLivro getLivro() {
         return this.livro;

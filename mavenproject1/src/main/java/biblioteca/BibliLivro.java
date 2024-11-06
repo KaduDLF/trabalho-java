@@ -9,6 +9,7 @@ public class BibliLivro {
     private String anoPub;
     private int exemplares;
     private int codigo;
+    public double preco;
     private boolean disponivel;
     
     public BibliLivro(String titulo, String autor, String anoPub, int exemplares, int codigo) {
@@ -19,7 +20,16 @@ public class BibliLivro {
         this.codigo = codigo;
         this.disponivel = true;
     }
-
+    
+    public BibliLivro (String titulo, String autor, String anoPub, int exemplares, int codigo, double preco){
+        this.titulo = titulo;
+        this.autor = autor;
+        this.anoPub = anoPub;
+        this.exemplares = exemplares;
+        this.codigo = codigo;
+        this.preco = preco;
+        
+    }
     
     public boolean getDisponivel(){
         return this.disponivel;

@@ -82,7 +82,7 @@ public class BibliMain {
                                 contatoUsu = scan.nextLine();
                                 System.out.println("Digite a idade do usuário");
                                 idadeUsu = scan.nextInt();
-                                if(idadeUsu > 100 || idadeUsu < 10){
+                                if(idadeUsu > 100 || idadeUsu < 5){
                                     System.out.println("Essa idade é invalida!");
                                     System.out.println("faça o cadastro novamente!");
                                     break;

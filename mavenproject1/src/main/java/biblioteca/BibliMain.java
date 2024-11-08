@@ -575,8 +575,15 @@ public class BibliMain {
                     break;
             }
             menu();
+            try {
             System.out.println("escolha outra opcao");
             opc = scan.nextInt();
+            
+            } catch (Exception e) {
+                System.out.println("Entrada incorreta!");
+                System.out.println("escolha outra opcao");
+                opc = scan.nextInt();
+            }
 
         }
 

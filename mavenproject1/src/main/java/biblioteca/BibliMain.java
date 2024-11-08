@@ -466,8 +466,6 @@ public class BibliMain {
                                         for (int j = 0; j < emprestimos.length; j++) {
                                             if (emprestimos[j] != null) { // listagem de livros que o usuario possui emprestado
                                                 if (emprestimos[j].getUsuario().getId() == idUsu) {
-                                                    System.out.println(" ");
-                                                    System.out.println(usuarios[i].getNome() + ", voce pegou esses livro(S): ");
                                                     System.out.println("-------------------------------------------------");
                                                     System.out.println("Titulo: " + emprestimos[j].getLivro().getTitulo());
                                                     System.out.println("Id: " + emprestimos[j].getLivro().getCodigo());
@@ -489,10 +487,12 @@ public class BibliMain {
                                         }
                                         if (livroEncontrado) {
                                             for (int j = 0; j < emprestimos.length; j++) {
-                                                if (emprestimos[j].getUsuario().getId() == idUsu) {
-                                                    if (emprestimos[j].getLivro().getCodigo() == codigo_e) {
-                                                        codigoIgual = true;
-                                                        break;
+                                                if(emprestimos[j] != null){
+                                                    if (emprestimos[j].getUsuario().getId() == idUsu) {
+                                                        if (emprestimos[j].getLivro().getCodigo() == codigo_e) {
+                                                            codigoIgual = true;
+                                                            break;
+                                                        }
                                                     }
                                                 }
                                             }

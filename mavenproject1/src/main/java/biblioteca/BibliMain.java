@@ -253,7 +253,6 @@ public class BibliMain {
                             usuEncontrado = false;
                             livroEncontrado = false;
                             boolean livrofoiEncontrado = false;
-                            scan.nextLine();
                             System.out.println("Qual seu ID de usuario?");
                             idUsu = scan.nextInt();
                             scan.nextLine();
@@ -265,10 +264,7 @@ public class BibliMain {
                                         usuEncontrado = true; // se encontrado vira true
                                         break;
                                     }
-                                } 
-                            }
-                            if (!usuEncontrado){
-                                System.out.println("Nao existe usuario com esse id!");  
+                                }
                             }
                             qtdEmprestimos = 0;
                             for (int i = 0; i < emprestimos.length; i++) {
@@ -339,9 +335,9 @@ public class BibliMain {
                                             System.out.println("Livro não encontrado");
                                         }
                                     }
-                                }
-                                if (!usuEncontrado){
-                                    System.out.println("Nao existe usuario com esse id!");  
+                                } else {
+                                    System.out.println("Usuario não cadastrado!");
+                                    scan.nextLine();
                                 }
                             }
 

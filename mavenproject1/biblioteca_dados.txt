@@ -48,3 +48,26 @@ usuario:felipe
 usuarios id: 1
 livro:mafioso
 livro id:1
+===== Usuários Cadastrados =====
+nome: felipe id: 1
+Email: felipe.gomes
+
+===== Livros Cadastrados =====
+Título: mamaco
+Autor: selva
+Ano de Publicacao:2019
+Quantidade de Exemplares: 3
+Codigo do livro: 1
+=======================================
+Título: leao
+Autor: selva
+Ano de Publicacao:2019
+Quantidade de Exemplares: 5
+Codigo do livro: 2
+=======================================
+
+===== Emprestimos Ativos =====
+usuario:felipe
+usuarios id: 1
+livro:mamaco
+livro id:1

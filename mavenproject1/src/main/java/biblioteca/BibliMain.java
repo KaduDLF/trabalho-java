@@ -44,17 +44,25 @@ public class BibliMain {
         boolean usuEncontrado = false; // verificador das listas
         boolean emprestEncontrado = false; // verificador das listas
         boolean codigoIgual = false; // verificador das listas
+        boolean possuiMaisDe3EmpAtivo = false;
+        boolean livrofoiEncontrado = false;
         String email;
         double precoLiv; //saber o preço do livro;
-        
+        int opc = 0;
         System.out.println("Bem vindo ao sistema de biblioteca!");
         BibliUsuario[] usuarios = new BibliUsuario[100];
         BibliLivro[] livros = new BibliLivro[100];
         Emprestimos[] emprestimos = new Emprestimos[300]; // supondo que cada pessoa pode fazer 3 emprestimos
         menu(); // mostrando o menu na tela
-
-        System.out.println("escolha uma opcao");
-        int opc = scan.nextInt();
+        try {
+            System.out.println("escolha uma opcao");
+            opc = scan.nextInt();
+            
+        } catch (Exception e) {
+            System.out.println("Entrada incorreta!");
+            System.out.println("escolha uma opcao");
+            opc = scan.nextInt();
+        }
 
         while (opc != 10) {
             switch (opc) {
@@ -247,12 +255,14 @@ public class BibliMain {
                         System.out.println("Deseja pegar um livro emprestado? ");
                         escolha = scan.next().toLowerCase();
                         scan.nextLine();
-                        boolean possuiMaisDe3EmpAtivo = false;
+                        
 
                         while ("sim".equals(escolha) || "s".equals(escolha)) {
+                            possuiMaisDe3EmpAtivo = false;
                             usuEncontrado = false;
                             livroEncontrado = false;
-                            boolean livrofoiEncontrado = false;
+                            livrofoiEncontrado = false;
+                            
                             System.out.println("Qual seu ID de usuario?");
                             idUsu = scan.nextInt();
                             scan.nextLine();
@@ -266,6 +276,7 @@ public class BibliMain {
                                     }
                                 }
                             }
+                            
                             qtdEmprestimos = 0;
                             for (int i = 0; i < emprestimos.length; i++) {
                                 if (emprestimos[i] != null) {
@@ -273,8 +284,10 @@ public class BibliMain {
                                 }
                             }
 
-                            if (usuarios[idUsu - 1].getQuantidadeEmprs() == 3) {
+                            if(usuEncontrado){
+                                if (usuarios[idUsu - 1].getQuantidadeEmprs() == 3) {
                                 possuiMaisDe3EmpAtivo = true;
+                                }  
                             }
 
                             if (possuiMaisDe3EmpAtivo) {
@@ -431,9 +444,7 @@ public class BibliMain {
 
                 case 8:
                     try {
-                        livroEncontrado = false;
-                        codigoIgual = false;
-                        usuEncontrado = false;
+                        
                         System.out.println("=======================================");
                         System.out.println("                DEVOLUCAO              ");
                         System.out.println("=======================================");
@@ -441,6 +452,9 @@ public class BibliMain {
                         escolha = scan.next().toLowerCase();
 
                         while ("sim".equals(escolha) || "s".equals(escolha)) {
+                            livroEncontrado = false;
+                            codigoIgual = false;
+                            usuEncontrado = false;
                             System.out.println("Informe o seu ID: ");
                             idUsu = scan.nextInt();
                             scan.nextLine();
